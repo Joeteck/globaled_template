@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalEd & Tour - Your Pathway to International Education</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-primary: #1a4d5e;
+            --brand-primary-dark: #0f3d4d;
+            --brand-secondary: #e39a4c;
+            --brand-secondary-light: #f2b36d;
+            --white: #ffffff;
+            --cream: #f9f6f1;
+            --gray-100: #f3f4f6;
+            --gray-600: #4b5563;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            color: var(--gray-900);
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--brand-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-900);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--brand-secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 12px 28px;
+            background: var(--brand-primary);
+            color: white !important;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .nav-cta::after {
+            display: none;
+        }
+
+        .nav-cta:hover {
+            background: var(--brand-primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            margin-top: 80px;
+            height: 90vh;
+            display: grid;
+            grid-template-columns: 45% 55%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-left {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 60px 80px 80px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-left::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(227, 154, 76, 0.2), transparent);
+            border-radius: 50%;
+            animation: float-orb 15s ease-in-out infinite;
+        }
+
+        @keyframes float-orb {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(227, 154, 76, 0.2);
+            border: 1px solid rgba(227, 154, 76, 0.4);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--brand-secondary-light);
+        }
+
+        .hero h1 {
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .hero-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            background: var(--brand-secondary);
+            color: var(--brand-primary-dark);
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(227, 154, 76, 0.3);
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(227, 154, 76, 0.4);
+        }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: ken-burns 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes ken-burns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        .hero-right::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 77, 94, 0.3), transparent);
+        }
+
+        /* STATS SECTION */
+        .stats {
+            padding: 0;
+            background: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stat-box {
+            padding: 60px 40px;
+            text-align: center;
+            border-right: 1px solid var(--gray-100);
+            border-bottom: 1px solid var(--gray-100);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box:nth-child(4n) {
+            border-right: none;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(135deg, var(--cream), var(--gray-100));
+            transition: height 0.4s ease;
+            z-index: 0;
+        }
+
+        .stat-box:hover::before {
+            height: 100%;
+        }
+
+        .stat-box > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            transition: transform 0.4s ease;
+        }
+
+        .stat-box:hover .stat-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .stat-number {
+            font-family: 'Manrope', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--brand-primary);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        /* WHY CHOOSE US - GRID LAYOUT */
+        .why-section {
+            padding: 0;
+            background: white;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .why-box {
+            position: relative;
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .why-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            transition: transform 0.4s ease;
+            z-index: 0;
+        }
+
+        .why-box:hover::before {
+            transform: scale(1.05);
+        }
+
+        .why-box > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .why-box-primary {
+            background: var(--brand-primary);
+            color: white;
+        }
+
+        .why-box-secondary {
+            background: var(--brand-secondary);
+            color: var(--brand-primary-dark);
+        }
+
+        .why-box-light {
+            background: var(--gray-100);
+            color: var(--brand-primary);
+        }
+
+        .why-box-image {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .why-box-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 77, 94, 0.85), rgba(227, 154, 76, 0.7));
+            z-index: 0;
+        }
+
+        .why-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .why-description {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            opacity: 0.95;
+            margin-bottom: 24px;
+        }
+
+        .why-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid currentColor;
+            border-radius: 8px;
+            color: inherit;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .why-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(5px);
+        }
+
+        /* UNIVERSITIES SECTION */
+        .universities {
+            padding: 100px 40px;
+            background: var(--cream);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--brand-secondary-light);
+            color: var(--brand-primary);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--brand-primary);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .uni-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .uni-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .uni-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .uni-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .uni-flag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .uni-content {
+            padding: 32px;
+        }
+
+        .uni-name {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            margin-bottom: 12px;
+        }
+
+        .uni-description {
+            font-size: 1rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .uni-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .uni-tag {
+            padding: 6px 14px;
+            background: var(--gray-100);
+            color: var(--brand-primary);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* PROCESS SECTION */
+        .process {
+            padding: 100px 40px;
+            background: white;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 60px auto 0;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 15%;
+            right: 15%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--brand-secondary), var(--brand-primary));
+            z-index: 0;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Manrope', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(26, 77, 94, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .process-step:hover .step-number {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(26, 77, 94, 0.4);
+        }
+
+        .step-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            margin-bottom: 12px;
+        }
+
+        .step-description {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* CTA SECTION */
+        .cta {
+            padding: 120px 40px;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-dark));
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(227, 154, 76, 0.2), transparent);
+            border-radius: 50%;
+            animation: float-orb 20s ease-in-out infinite;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .cta p {
+            font-size: 1.375rem;
+            opacity: 0.95;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn-primary {
+            padding: 20px 48px;
+            background: var(--brand-secondary);
+            color: var(--brand-primary-dark);
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(227, 154, 76, 0.4);
+        }
+
+        .cta-btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(227, 154, 76, 0.5);
+        }
+
+        .cta-btn-secondary {
+            padding: 20px 48px;
+            background: transparent;
+            border: 3px solid white;
+            color: white;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn-secondary:hover {
+            background: white;
+            color: var(--brand-primary);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 60px 40px 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            font-size: 1.125rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* SCROLL ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .hero-right {
+                height: 400px;
+            }
+
+            .stats-grid,
+            .why-grid,
+            .uni-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-btn-primary,
+            .cta-btn-secondary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">🌍</div>
+                GlobalEd & Tour
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#universities">Universities</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact" class="nav-cta">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-left">
+            <div class="hero-content">
+                <span class="hero-badge">🌟 Trusted by 250+ Students Worldwide</span>
+                <h1>GlobalEd & Tour</h1>
+                <p class="hero-subtitle">A Great Place to Learn Globally</p>
+                <p class="hero-description">
+                    We connect ambitious students with world-class international universities to unlock academic success, cultural growth, and global career opportunities.
+                </p>
+                <a href="#contact" class="hero-button">
+                    Start Your Journey
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1400&h=900&fit=crop&q=80" alt="International students" class="hero-image">
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-box fade-in">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-number">250+</div>
+                <div class="stat-label">Students Placed</div>
+            </div>
+            <div class="stat-box fade-in">
+                <div class="stat-icon">🎓</div>
+                <div class="stat-number">4+</div>
+                <div class="stat-label">Partner Universities</div>
+            </div>
+            <div class="stat-box fade-in">
+                <div class="stat-icon">✈️</div>
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Visa Success Rate</div>
+            </div>
+            <div class="stat-box fade-in">
+                <div class="stat-number">💼</div>
+                <div class="stat-number">85%</div>
+                <div class="stat-label">Career Placement</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US - GRID -->
+    <section class="why-section" id="about">
+        <div class="why-grid">
+            <div class="why-box why-box-primary fade-in">
+                <h2 class="why-title">Expert Guidance</h2>
+                <p class="why-description">
+                    Personalized counseling from application to enrollment with dedicated education consultants who know the process inside-out.
+                </p>
+                <a href="#" class="why-button">Learn More →</a>
+            </div>
+            <div class="why-box why-box-image fade-in" style="background-image: url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&h=600&fit=crop&q=80');">
+                <h2 class="why-title">Global Network</h2>
+                <p class="why-description">
+                    Partnerships with top universities in US, UK, Canada, Germany, and Netherlands.
+                </p>
+                <a href="#" class="why-button">View Partners →</a>
+            </div>
+            <div class="why-box why-box-image fade-in" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&h=600&fit=crop&q=80');">
+                <h2 class="why-title">Visa Support</h2>
+                <p class="why-description">
+                    95% visa success rate with comprehensive document preparation and interview coaching.
+                </p>
+                <a href="#" class="why-button">Get Help →</a>
+            </div>
+            <div class="why-box why-box-secondary fade-in">
+                <h2 class="why-title">Post-Arrival Care</h2>
+                <p class="why-description">
+                    Accommodation assistance, airport pickup, and orientation support to help you settle smoothly.
+                </p>
+                <a href="#" class="why-button">View Programs →</a>
+            </div>
+            <div class="why-box why-box-light fade-in">
+                <h2 class="why-title">Career Services</h2>
+                <p class="why-description">
+                    Post-graduation support including career counseling, internship connections, and job placement.
+                </p>
+                <a href="#" class="why-button">Explore →</a>
+            </div>
+            <div class="why-box why-box-image fade-in" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&q=80');">
+                <h2 class="why-title">Scholarship Guidance</h2>
+                <p class="why-description">
+                    Access to exclusive scholarship opportunities and financial aid guidance to make education affordable.
+                </p>
+                <a href="#" class="why-button">Learn More →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- UNIVERSITIES SECTION -->
+    <section class="universities" id="universities">
+        <div class="section-header">
+            <span class="section-tag">Our Partners</span>
+            <h2 class="section-title">Study at World-Class Institutions</h2>
+            <p class="section-description">
+                We've partnered with leading universities across North America and Europe to give you access to quality education and global opportunities.
+            </p>
+        </div>
+        <div class="uni-grid">
+            <div class="uni-card fade-in">
+                <div class="uni-image" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=500&fit=crop&q=80');">
+                    <div class="uni-flag">🇨🇦</div>
+                </div>
+                <div class="uni-content">
+                    <h3 class="uni-name">Trebas Institute Quebec</h3>
+                    <p class="uni-description">
+                        Career-focused programs in business, creative media, music & film, and technology with hands-on training in downtown Montreal.
+                    </p>
+                    <div class="uni-tags">
+                        <span class="uni-tag">Business</span>
+                        <span class="uni-tag">Creative Media</span>
+                        <span class="uni-tag">Technology</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uni-card fade-in">
+                <div class="uni-image" style="background-image: url('https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=800&h=500&fit=crop&q=80');">
+                    <div class="uni-flag">🇳🇱</div>
+                </div>
+                <div class="uni-content">
+                    <h3 class="uni-name">University of Applied Sciences Europe</h3>
+                    <p class="uni-description">
+                        Innovation-driven education with strong entrepreneurial focus in Amsterdam's vibrant multicultural environment.
+                    </p>
+                    <div class="uni-tags">
+                        <span class="uni-tag">Business</span>
+                        <span class="uni-tag">Innovation</span>
+                        <span class="uni-tag">Global City</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uni-card fade-in">
+                <div class="uni-image" style="background-image: url('https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800&h=500&fit=crop&q=80');">
+                    <div class="uni-flag">🇺🇸</div>
+                </div>
+                <div class="uni-content">
+                    <h3 class="uni-name">Herzing University</h3>
+                    <p class="uni-description">
+                        50+ years of career-ready programs in healthcare, business, technology, and nursing across multiple U.S. campuses.
+                    </p>
+                    <div class="uni-tags">
+                        <span class="uni-tag">Healthcare</span>
+                        <span class="uni-tag">Technology</span>
+                        <span class="uni-tag">Nursing</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uni-card fade-in">
+                <div class="uni-image" style="background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=500&fit=crop&q=80');">
+                    <div class="uni-flag">🇩🇪</div>
+                </div>
+                <div class="uni-content">
+                    <h3 class="uni-name">Berlin School of Business & Innovation</h3>
+                    <p class="uni-description">
+                        Global business education in Europe's startup capital with campuses across Berlin, Hamburg, Paris, and Barcelona.
+                    </p>
+                    <div class="uni-tags">
+                        <span class="uni-tag">Business</span>
+                        <span class="uni-tag">Leadership</span>
+                        <span class="uni-tag">Entrepreneurship</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section class="process" id="process">
+        <div class="section-header">
+            <span class="section-tag">Simple Process</span>
+            <h2 class="section-title">Your Journey in 4 Easy Steps</h2>
+            <p class="section-description">
+                From initial consultation to landing in your dream destination, we're with you every step of the way.
+            </p>
+        </div>
+        <div class="process-steps">
+            <div class="process-step fade-in">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Free Consultation</h3>
+                <p class="step-description">
+                    Book a free session with our experts to discuss your goals, budget, and preferred destinations.
+                </p>
+            </div>
+            <div class="process-step fade-in">
+                <div class="step-number">2</div>
+                <h3 class="step-title">University Selection</h3>
+                <p class="step-description">
+                    We match you with the best universities based on your profile, career goals, and preferences.
+                </p>
+            </div>
+            <div class="process-step fade-in">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Application & Visa</h3>
+                <p class="step-description">
+                    Complete application support, document preparation, and visa assistance with 95% success rate.
+                </p>
+            </div>
+            <div class="process-step fade-in">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Pre-Departure</h3>
+                <p class="step-description">
+                    Travel guidance, accommodation setup, and post-arrival support to ensure a smooth transition.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta" id="contact">
+        <div class="cta-content">
+            <h2>Ready to Start Your Global Education Journey?</h2>
+            <p>
+                Book a free consultation today and take the first step toward studying at world-class universities abroad.
+            </p>
+            <div class="cta-buttons">
+                <a href="mailto:hello@globaledtour.com" class="cta-btn-primary">Get Free Consultation</a>
+                <a href="https://wa.me/1234567890" class="cta-btn-secondary">Chat on WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>GlobalEd & Tour</h3>
+                <p>
+                    Your trusted partner for international education. We connect ambitious students with world-class universities worldwide.
+                </p>
+                <p>
+                    <strong>Email:</strong> hello@globaledtour.com<br>
+                    <strong>Phone:</strong> +1 (234) 567-8900
+                </p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#universities">Universities</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Destinations</h4>
+                <ul>
+                    <li><a href="#">Study in USA</a></li>
+                    <li><a href="#">Study in Canada</a></li>
+                    <li><a href="#">Study in UK</a></li>
+                    <li><a href="#">Study in Germany</a></li>
+                    <li><a href="#">Study in Netherlands</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Application Guide</a></li>
+                    <li><a href="#">Visa Requirements</a></li>
+                    <li><a href="#">Scholarships</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 GlobalEd & Tour. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script>
+        // SCROLL ANIMATIONS
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // NAVBAR SCROLL EFFECT
+        let lastScroll = 0;
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
