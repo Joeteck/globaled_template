@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Universities | GlobalEd & Tour | Premium International Education</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Universities Page with Grid/Boxing Layout */
+        :root {
+            --grid-gap: 2px;
+            --box-padding: 30px;
+            --border-thickness: 1px;
+        }
+        
+        /* Hero Section */
+        .universities-hero {
+            padding: 150px 6% 80px;
+            background: var(--brand-primary);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+        
+        .universities-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .universities-eyebrow {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--brand-secondary);
+            color: var(--brand-primary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            border: none;
+        }
+        
+        .universities-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .hero-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--grid-gap);
+            margin-top: 60px;
+            max-width: 800px;
+        }
+        
+        .hero-stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--box-padding);
+            border: var(--border-thickness) solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .hero-stat-box:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .hero-stat-box strong {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: var(--brand-secondary);
+        }
+        
+        .hero-stat-box span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            padding: 60px 6%;
+            background: var(--bg-light);
+            border-bottom: var(--border-thickness) solid var(--border-subtle);
+        }
+        
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: var(--grid-gap);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .filter-box {
+            background: var(--white);
+            padding: 20px;
+            border: var(--border-thickness) solid var(--border-subtle);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filter-box.active {
+            background: var(--brand-primary);
+            color: var(--white);
+            border-color: var(--brand-primary);
+        }
+        
+        .filter-box.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--brand-secondary);
+        }
+        
+        .filter-box:hover:not(.active) {
+            background: rgba(26, 77, 94, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .filter-box i {
+            font-style: normal;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        /* Universities Grid Section */
+        .universities-grid-section {
+            padding: 0 6% 100px;
+            background: var(--white);
+        }
+        
+        .grid-header {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            padding: 40px 0;
+            border-bottom: var(--border-thickness) solid var(--border-subtle);
+        }
+        
+        .grid-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--brand-primary);
+            margin-bottom: 10px;
+        }
+        
+        .grid-subtitle {
+            color: var(--gray-600);
+            font-size: 1.1rem;
+        }
+        
+        /* Main Grid Layout */
+        .universities-master-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: var(--grid-gap);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Grid Box Types */
+        .grid-box {
+            padding: var(--box-padding);
+            border: var(--border-thickness) solid var(--border-subtle);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .grid-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+        
+        /* Color Variations */
+        .primary-box {
+            background: var(--brand-primary);
+            color: var(--white);
+            border-color: var(--brand-primary);
+        }
+        
+        .secondary-box {
+            background: var(--brand-secondary);
+            color: var(--brand-primary);
+            border-color: var(--brand-secondary);
+        }
+        
+        .light-box {
+            background: var(--bg-light);
+            border-color: var(--border-subtle);
+        }
+        
+        .white-box {
+            background: var(--white);
+            border-color: var(--border-subtle);
+        }
+        
+        /* Specific Grid Areas */
+        .grid-area-1 {
+            grid-column: span 4;
+            grid-row: span 2;
+        }
+        
+        .grid-area-2 {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+        
+        .grid-area-3 {
+            grid-column: span 3;
+            grid-row: span 1;
+        }
+        
+        .grid-area-4 {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+        
+        .grid-area-5 {
+            grid-column: span 4;
+            grid-row: span 1;
+        }
+        
+        .grid-area-6 {
+            grid-column: span 3;
+            grid-row: span 2;
+        }
+        
+        /* Content within Grid Boxes */
+        .university-name {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        
+        .primary-box .university-name {
+            color: var(--white);
+        }
+        
+        .secondary-box .university-name {
+            color: var(--brand-primary);
+        }
+        
+        .university-location {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        
+        .primary-box .university-location {
+            color: var(--brand-secondary);
+        }
+        
+        .secondary-box .university-location {
+            color: var(--brand-primary);
+            opacity: 0.9;
+        }
+        
+        .light-box .university-location,
+        .white-box .university-location {
+            color: var(--brand-primary);
+        }
+        
+        .university-info {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .primary-box .university-info {
+            opacity: 0.9;
+        }
+        
+        .secondary-box .university-info {
+            opacity: 0.9;
+        }
+        
+        .light-box .university-info,
+        .white-box .university-info {
+            color: var(--gray-600);
+        }
+        
+        /* Partnership Badge */
+        .partnership-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .white-box .partnership-badge,
+        .light-box .partnership-badge {
+            background: rgba(26, 77, 94, 0.1);
+            border-color: var(--brand-primary);
+            color: var(--brand-primary);
+        }
+        
+        /* Stats within boxes */
+        .box-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .white-box .box-stats,
+        .light-box .box-stats {
+            border-top-color: var(--border-subtle);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+        
+        .primary-box .stat-number {
+            color: var(--brand-secondary);
+        }
+        
+        .secondary-box .stat-number {
+            color: var(--brand-primary);
+        }
+        
+        .light-box .stat-number,
+        .white-box .stat-number {
+            color: var(--brand-primary);
+        }
+        
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+        
+        /* Action Button */
+        .box-action {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .white-box .box-action,
+        .light-box .box-action {
+            border-top-color: var(--border-subtle);
+        }
+        
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+        
+        .primary-box .action-link {
+            color: var(--white);
+        }
+        
+        .secondary-box .action-link {
+            color: var(--brand-primary);
+        }
+        
+        .light-box .action-link,
+        .white-box .action-link {
+            color: var(--brand-primary);
+        }
+        
+        .action-link:hover {
+            gap: 15px;
+        }
+        
+        /* Modal (same as before but adjusted) */
+        .university-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .university-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            border: var(--border-thickness) solid var(--border-subtle);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .university-modal.active .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            background: var(--brand-primary);
+            color: white;
+            padding: 40px;
+            position: relative;
+            border-bottom: 4px solid var(--brand-secondary);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-stats-grid,
+            .filter-grid,
+            .universities-master-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+            
+            .grid-area-1 { grid-column: span 3; }
+            .grid-area-2 { grid-column: span 2; }
+            .grid-area-3 { grid-column: span 3; }
+            .grid-area-4 { grid-column: span 2; }
+            .grid-area-5 { grid-column: span 3; }
+            .grid-area-6 { grid-column: span 3; }
+        }
+        
+        @media (max-width: 768px) {
+            .universities-hero {
+                padding: 120px 5% 60px;
+            }
+            
+            .hero-stats-grid,
+            .filter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .universities-master-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .grid-area-1,
+            .grid-area-2,
+            .grid-area-3,
+            .grid-area-4,
+            .grid-area-5,
+            .grid-area-6 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+            
+            .grid-header {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .universities-title {
+                font-size: clamp(2rem, 5vw, 2.5rem);
+            }
+            
+            .grid-title {
+                font-size: 2rem;
+            }
+            
+            .grid-box {
+                padding: 20px;
+            }
+            
+            .hero-stat-box {
+                padding: 20px;
+            }
+            
+            .hero-stat-box strong {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div><img src="assets/icons/globaled.png" alt="Globaled" class="logo"/></div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="home.html" onclick="closeMenu()">Home</a></li>
+                <li><a href="about.html" onclick="closeMenu()">About</a></li>
+                <li><a href="universities.html" class="active" onclick="closeMenu()">Universities</a></li>
+                <li><a href="#contact" class="nav-cta" onclick="closeMenu()">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="universities-hero">
+        <div class="hero-pattern"></div>
+        <div class="universities-hero-content">
+            <div class="universities-eyebrow">Official Partner Network</div>
+            <h1 class="universities-title">
+                Global University<br>
+                <span style="color: var(--brand-secondary);">Partnership Grid</span>
+            </h1>
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin-bottom: 40px;">
+                Explore our curated network of premium institutions across North America and Europe. 
+                Each partnership offers unique opportunities for international success.
+            </p>
+            
+            <div class="hero-stats-grid">
+                <div class="hero-stat-box">
+                    <strong>12</strong>
+                    <span>Partner Universities</span>
+                </div>
+                <div class="hero-stat-box">
+                    <strong>95%</strong>
+                    <span>Admission Success</span>
+                </div>
+                <div class="hero-stat-box">
+                    <strong>4+</strong>
+                    <span>Countries</span>
+                </div>
+                <div class="hero-stat-box">
+                    <strong>250+</strong>
+                    <span>Students Placed</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-background-wrap">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1400" alt="University Campus" class="halfway-img">
+        </div>
+
+        <div class="cta-container">
+            <div class="cta-content">
+                <span class="cta-badge">Direct Admission</span>
+                <h2 class="cta-title">Ready to join our partner universities?</h2>
+                
+                <p class="cta-description">
+                    Apply through our official partnership for priority processing, dedicated support, 
+                    and exclusive scholarship opportunities not available through direct applications.
+                </p>
+                
+                <div class="study-features">
+                    <div class="study-item">✓ Priority Application Processing</div>
+                    <div class="study-item">✓ Exclusive Scholarship Access</div>
+                    <div class="study-item">✓ Dedicated Admissions Support</div>
+                    <div class="study-item">✓ Visa & Relocation Assistance</div>
+                </div>
+
+                <div class="cta-form">
+                    <h3 class="form-title">Begin Your Application</h3>
+                    <form id="consultationForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" name="name" placeholder="Your name" class="cta-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" name="email" placeholder="Your email" class="cta-input" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred University</label>
+                            <select name="university" class="cta-input" required>
+                                <option value="">Select a university</option>
+                                <!-- Options will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn">Begin Application →</button>
+                    </form>
+                    <div id="result" style="margin-top: 15px; font-weight: 600;"></div>
+                    
+                    <div class="form-assurance">
+                        <span>✓ Official Partnership Application</span>
+                        <span>✓ No Application Fees Through Us</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column brand-col animate-footer">
+                    <div><img src="assets/icons/globaled.png" alt="Globaled" class="logo"/></div>
+                    <p class="footer-bio">
+                        Your trusted bridge to international excellence. We simplify the journey to world-class education with expert guidance and a global network.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><img src="assets/icons/facebook.png" class="social-icon" aria-label="Facebook" alt="Fb"/></a>
+                        <a href="#"><img src="assets/icons/twitter.png" class="social-icon" aria-label="Twitter" alt="Tw"/></a>
+                        <a href="#"><img src="assets/icons/linkedin.png" class="social-icon" aria-label="LinkedIn" alt="In"/></a>
+                        <a href="#"><img src="assets/icons/social.png" class="social-icon" aria-label="Instagram" alt="Ig"/></a>
+                    </div>
+                </div>
+
+                <div class="footer-column animate-footer">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="universities.html">Universities</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column animate-footer">
+                    <h4>Destinations</h4>
+                    <ul>
+                        <li><a href="#">Study in USA</a></li>
+                        <li><a href="#">Study in Canada</a></li>
+                        <li><a href="#">Study in UK</a></li>
+                        <li><a href="#">Study in Germany</a></li>
+                        <li><a href="#">Study in Netherlands</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column newsletter-col animate-footer">
+                    <h4>Offices</h4>
+                    <p>Liberia office contact: <br><strong>+231 886 213461</strong></p>
+                    <p>Germany office contact: <br><strong>+4915213716590</strong></p>
+                    <p>Ghana office contact: <br><strong>+233 553 258 981</strong></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <p>&copy; 2024 GlobalEd & Tour. All rights reserved.</p>
+                </div>
+                <div class="footer-secondary-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/script.js"></script>
+    
+    <script>
+        // Universities Data
+        const universities = [
+            {
+                id: 1,
+                name: "Washington University School of Law",
+                location: "St. Louis, Missouri, USA",
+                country: "usa",
+                description: "A prestigious law school offering cutting-edge legal education with global perspectives. Renowned for its research output and distinguished faculty.",
+                programs: "JD, LLM, SJD programs in various legal specializations",
+                rankings: "Top 20 Law School in the USA",
+                benefits: "Priority application review, scholarship opportunities, visa guidance",
+                stats: {
+                    programs: "50+",
+                    students: "8,000+",
+                    rank: "Top 20"
+                }
+            },
+            {
+                id: 2,
+                name: "University of Applied Sciences Europe",
+                location: "Amsterdam, Netherlands",
+                country: "netherlands",
+                description: "Modern university focusing on business, psychology, and media studies with strong industry connections and international focus.",
+                programs: "Business Administration, Psychology, Digital Media, Game Design",
+                rankings: "Top 10 Applied Sciences Universities in Netherlands",
+                benefits: "Direct admission pathway, housing assistance, orientation program",
+                stats: {
+                    programs: "30+",
+                    students: "5,000+",
+                    rank: "Top 10"
+                }
+            },
+            {
+                id: 3,
+                name: "Berlin School of Business and Innovation",
+                location: "Berlin, Germany",
+                country: "germany",
+                description: "Innovative business school in the heart of Berlin, offering industry-relevant programs with strong focus on entrepreneurship.",
+                programs: "MBA, Business Management, Finance, Marketing",
+                rankings: "Leading Business School in Germany",
+                benefits: "Industry mentorship, internship opportunities, career fairs",
+                stats: {
+                    programs: "25+",
+                    students: "4,000+",
+                    rank: "Leading"
+                }
+            },
+            {
+                id: 4,
+                name: "Penn State Dickinson Law",
+                location: "Carlisle, Pennsylvania, USA",
+                country: "usa",
+                description: "Historic law school combining traditional legal education with modern innovation and practical training.",
+                programs: "Juris Doctor, Master of Laws, Legal Clinics",
+                rankings: "Top 50 Law Schools in USA",
+                benefits: "Application fee waiver, early decision consideration",
+                stats: {
+                    programs: "15+",
+                    students: "3,500+",
+                    rank: "Top 50"
+                }
+            },
+            {
+                id: 5,
+                name: "LIM College",
+                location: "New York City, USA",
+                country: "usa",
+                description: "Specialized fashion business college in Manhattan offering unique programs blending business, technology, and fashion.",
+                programs: "Fashion Marketing, Business Management, Visual Studies",
+                rankings: "#1 Fashion Business School in NYC",
+                benefits: "Exclusive industry partnerships, NYC location benefits",
+                stats: {
+                    programs: "20+",
+                    students: "2,500+",
+                    rank: "#1"
+                }
+            },
+            {
+                id: 6,
+                name: "Trebas Institute - Montréal",
+                location: "Montréal, Canada",
+                country: "canada",
+                description: "Leading institute for music, film, and entertainment business education in Canada's cultural hub.",
+                programs: "Audio Engineering, Film Production, Entertainment Management",
+                rankings: "Top Media Arts Institute in Quebec",
+                benefits: "Post-graduation work permit eligibility, French language support",
+                stats: {
+                    programs: "15+",
+                    students: "2,000+",
+                    rank: "Top 3"
+                }
+            },
+            {
+                id: 7,
+                name: "Trebas Institute - Toronto",
+                location: "Toronto, Canada",
+                country: "canada",
+                description: "Dynamic campus in Canada's largest city offering cutting-edge programs in entertainment and media industries.",
+                programs: "Music Business, Film Production, Event Management",
+                rankings: "Premier Entertainment Institute in Ontario",
+                benefits: "Toronto industry connections, internship opportunities",
+                stats: {
+                    programs: "15+",
+                    students: "2,500+",
+                    rank: "Premier"
+                }
+            },
+            {
+                id: 8,
+                name: "Toronto School of Management",
+                location: "Toronto, Canada",
+                country: "canada",
+                description: "Innovative business school offering career-focused programs with strong industry partnerships in Canada's business capital.",
+                programs: "Business Management, Hospitality, Data Analytics",
+                rankings: "Top Career College in Toronto",
+                benefits: "Work-integrated learning, industry-recognized certifications",
+                stats: {
+                    programs: "25+",
+                    students: "3,000+",
+                    rank: "Top 5"
+                }
+            },
+            {
+                id: 9,
+                name: "IBAT College Dublin",
+                location: "Dublin, Ireland",
+                country: "ireland",
+                description: "Ireland's leading business college offering practical, industry-focused education in the heart of Dublin's business district.",
+                programs: "Business, Computing, Hospitality Management",
+                rankings: "Top Business College in Ireland",
+                benefits: "Irish government recognized, post-study work opportunities",
+                stats: {
+                    programs: "20+",
+                    students: "2,500+",
+                    rank: "Top 5"
+                }
+            },
+            {
+                id: 10,
+                name: "University of Niagara Falls Canada",
+                location: "Niagara Falls, Canada",
+                country: "canada",
+                description: "New, innovative university offering technology-focused programs in one of Canada's most scenic locations.",
+                programs: "Digital Media, Business Technology, Environmental Studies",
+                rankings: "Newest University in Ontario",
+                benefits: "New campus advantages, small class sizes, personalized attention",
+                stats: {
+                    programs: "10+",
+                    students: "1,500+",
+                    rank: "Newest"
+                }
+            },
+            {
+                id: 11,
+                name: "Concordia University Chicago",
+                location: "Chicago, Illinois, USA",
+                country: "usa",
+                description: "Comprehensive university offering liberal arts and professional programs with strong community engagement.",
+                programs: "Education, Business, Arts & Sciences",
+                rankings: "Top Midwest Regional University",
+                benefits: "Scholarship opportunities, transfer credit evaluation",
+                stats: {
+                    programs: "60+",
+                    students: "7,000+",
+                    rank: "Top 100"
+                }
+            },
+            {
+                id: 12,
+                name: "Canadian College of Technology and Business",
+                location: "Vancouver, Canada",
+                country: "canada",
+                description: "Modern college focusing on technology and business education in one of Canada's most vibrant cities.",
+                programs: "IT, Business Administration, Project Management",
+                rankings: "Leading Tech College in Vancouver",
+                benefits: "Vancouver tech industry connections, practical training",
+                stats: {
+                    programs: "15+",
+                    students: "2,000+",
+                    rank: "Leading"
+                }
+            }
+        ];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeUniversitiesPage();
+        });
+
+        function initializeUniversitiesPage() {
+            // 1. Render university grid
+            renderUniversityGrid();
+            
+            // 2. Setup country filter
+            setupCountryFilter();
+            
+            // 3. Setup modal functionality
+            setupModal();
+            
+            // 4. Populate university dropdown in form
+            populateUniversityDropdown();
+            
+            // 5. Add active class to current nav link
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        function renderUniversityGrid() {
+            const grid = document.getElementById('universitiesGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            
+            // Define grid layout patterns (matching your example)
+            const layouts = [
+                { type: 'primary-box', area: 'grid-area-1' },
+                { type: 'secondary-box', area: 'grid-area-2' },
+                { type: 'white-box', area: 'grid-area-3' },
+                { type: 'light-box', area: 'grid-area-4' },
+                { type: 'secondary-box', area: 'grid-area-5' },
+                { type: 'primary-box', area: 'grid-area-6' },
+                { type: 'light-box', area: 'grid-area-2' },
+                { type: 'white-box', area: 'grid-area-3' },
+                { type: 'primary-box', area: 'grid-area-4' },
+                { type: 'white-box', area: 'grid-area-5' },
+                { type: 'light-box', area: 'grid-area-2' },
+                { type: 'secondary-box', area: 'grid-area-3' }
+            ];
+            
+            universities.forEach((university, index) => {
+                const layout = layouts[index % layouts.length];
+                
+                const gridBox = document.createElement('div');
+                gridBox.className = `grid-box ${layout.type} ${layout.area} fade-in`;
+                gridBox.dataset.country = university.country;
+                gridBox.dataset.id = university.id;
+                
+                gridBox.innerHTML = `
+                    <div class="university-name">${university.name}</div>
+                    <div class="university-location">📍 ${university.location}</div>
+                    <p class="university-info">${university.description}</p>
+                    <div class="partnership-badge">🤝 Official Partner</div>
+                    <div class="box-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">${university.stats.programs}</span>
+                            <span class="stat-label">Programs</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">${university.stats.students}</span>
+                            <span class="stat-label">Students</span>
+                        </div>
+                    </div>
+                    <div class="box-action">
+                        <a href="#" class="action-link">View Details →</a>
+                    </div>
+                `;
+                
+                grid.appendChild(gridBox);
+            });
+            
+            // Add click event to grid boxes
+            document.querySelectorAll('.grid-box').forEach(box => {
+                box.addEventListener('click', function(e) {
+                    if (!e.target.closest('.action-link')) {
+                        const universityId = parseInt(this.dataset.id);
+                        openUniversityModal(universityId);
+                    }
+                });
+                
+                // Action link click
+                const actionLink = box.querySelector('.action-link');
+                if (actionLink) {
+                    actionLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const universityId = parseInt(box.dataset.id);
+                        openUniversityModal(universityId);
+                    });
+                }
+            });
+        }
+
+        function setupCountryFilter() {
+            const filterButtons = document.querySelectorAll('.filter-box');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter universities
+                    const filter = this.dataset.filter;
+                    const boxes = document.querySelectorAll('.grid-box');
+                    
+                    boxes.forEach(box => {
+                        if (filter === 'all' || box.dataset.country === filter) {
+                            box.style.display = 'block';
+                            setTimeout(() => {
+                                box.style.opacity = '1';
+                                box.style.transform = 'translateY(0)';
+                            }, 10);
+                        } else {
+                            box.style.opacity = '0';
+                            box.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                box.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        }
+
+        function setupModal() {
+            const modal = document.getElementById('universityModal');
+            const closeBtn = document.getElementById('modalClose');
+            
+            // Close modal
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModal();
+            });
+            
+            // Escape key to close
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        }
+
+        function openUniversityModal(id) {
+            const university = universities.find(u => u.id === id);
+            if (!university) return;
+            
+            const modal = document.getElementById('universityModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Populate modal content
+            document.getElementById('modalTitle').textContent = university.name;
+            document.getElementById('modalLocation').textContent = `📍 ${university.location}`;
+            document.getElementById('modalDescription').textContent = university.description;
+            document.getElementById('modalPrograms').textContent = university.programs;
+            document.getElementById('modalRankings').textContent = university.rankings;
+            document.getElementById('modalBenefits').textContent = university.benefits;
+            
+            // Set button action
+            const applyBtn = document.getElementById('modalApplyBtn');
+            applyBtn.onclick = function() {
+                closeModal();
+                document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+                // Pre-select this university in the form
+                const select = document.querySelector('select[name="university"]');
+                if (select) {
+                    select.value = university.name;
+                }
+            };
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('universityModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function populateUniversityDropdown() {
+            const select = document.querySelector('select[name="university"]');
+            if (!select) return;
+            
+            // Clear existing options except the first one
+            while (select.options.length > 1) {
+                select.remove(1);
+            }
+            
+            // Add university options
+            universities.forEach(university => {
+                const option = document.createElement('option');
+                option.value = university.name;
+                option.textContent = `${university.name} (${getCountryName(university.country)})`;
+                select.appendChild(option);
+            });
+        }
+
+        function getCountryName(country) {
+            const names = {
+                usa: 'USA',
+                canada: 'Canada',
+                germany: 'Germany',
+                ireland: 'Ireland',
+                netherlands: 'Netherlands'
+            };
+            return names[country] || 'International';
+        }
+    </script>
+</body>
+</html>

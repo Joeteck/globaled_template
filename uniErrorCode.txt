@@ -1,0 +1,84 @@
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="filter-grid">
+            <div class="filter-box active" data-filter="all">
+                <i>🌍</i>
+                All Universities
+            </div>
+            <div class="filter-box" data-filter="usa">
+                <i>🇺🇸</i>
+                USA
+            </div>
+            <div class="filter-box" data-filter="canada">
+                <i>🇨🇦</i>
+                Canada
+            </div>
+            <div class="filter-box" data-filter="germany">
+                <i>🇩🇪</i>
+                Germany
+            </div>
+            <div class="filter-box" data-filter="ireland">
+                <i>🇮🇪</i>
+                Ireland
+            </div>
+            <div class="filter-box" data-filter="netherlands">
+                <i>🇳🇱</i>
+                Netherlands
+            </div>
+        </div>
+    </section>
+
+    <!-- Universities Grid -->
+    <section class="universities-grid-section">
+        <div class="grid-header">
+            <h2 class="grid-title">Partner Institutions Grid</h2>
+            <p class="grid-subtitle">
+                Click any institution to view detailed information, programs, and partnership benefits
+            </p>
+        </div>
+        
+        <div class="universities-master-grid" id="universitiesGrid">
+            <!-- Grid boxes will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- University Modal -->
+    <div class="university-modal" id="universityModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" id="modalClose">&times;</button>
+                <h2 id="modalTitle" style="font-size: 2rem; margin-bottom: 10px;"></h2>
+                <div id="modalLocation" style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 20px;"></div>
+                <div class="partnership-badge">🤝 Official Partner Institution</div>
+            </div>
+            
+            <div class="modal-body" style="padding: 40px;">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 40px;">
+                    <div>
+                        <h3 style="font-family: 'Manrope'; color: var(--brand-primary); margin-bottom: 15px;">About</h3>
+                        <p id="modalDescription" style="color: var(--gray-600); line-height: 1.7;"></p>
+                    </div>
+                    <div>
+                        <h3 style="font-family: 'Manrope'; color: var(--brand-primary); margin-bottom: 15px;">Key Programs</h3>
+                        <p id="modalPrograms" style="color: var(--gray-600); line-height: 1.7;"></p>
+                    </div>
+                    <div>
+                        <h3 style="font-family: 'Manrope'; color: var(--brand-primary); margin-bottom: 15px;">Global Rankings</h3>
+                        <p id="modalRankings" style="color: var(--gray-600); line-height: 1.7;"></p>
+                    </div>
+                    <div>
+                        <h3 style="font-family: 'Manrope'; color: var(--brand-primary); margin-bottom: 15px;">Partnership Benefits</h3>
+                        <p id="modalBenefits" style="color: var(--gray-600); line-height: 1.7;"></p>
+                    </div>
+                </div>
+                
+                <div style="background: var(--bg-light); padding: 30px; border: 1px solid var(--border-subtle);">
+                    <h3 style="font-family: 'Manrope'; color: var(--brand-primary); margin-bottom: 15px;">Application Through GlobalEd</h3>
+                    <p style="color: var(--gray-600); margin-bottom: 20px;">Apply through our official partnership for priority processing, dedicated support, and exclusive scholarship opportunities.</p>
+                    <button id="modalApplyBtn" style="padding: 12px 30px; background: var(--brand-primary); color: white; border: none; font-weight: 600; cursor: pointer; transition: background 0.3s ease;">
+                        Begin Application Process →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
