@@ -217,6 +217,211 @@
             border: 2px solid var(--brand-primary);
             color: var(--brand-primary);
         }
+
+        /* Partner Certifications Slider Styles */
+        .certifications-slider {
+            padding: 80px 60px;
+            background: var(--bg-light);
+        }
+        
+        .certifications-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+        
+        .certifications-eyebrow {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(227, 154, 76, 0.2);
+            border: 1px solid var(--brand-secondary);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--brand-primary);
+            text-transform: uppercase;
+        }
+        
+        .certifications-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: var(--brand-primary);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        
+        .certifications-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .certifications-swiper {
+            max-width: 1200px;
+            height: 700px;
+            margin: 0 auto;
+            padding: 20px 0 60px;
+        }
+        
+        .certification-slide {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .certification-slide:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .certification-logo {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .certification-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .certification-content {
+            height: fit-content;
+            padding-left: 25px;
+            padding-right: 25px;
+            padding-top: 25px;
+            margin-bottom: 25px;
+
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .certification-name {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        
+        .certification-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+        
+        .certification-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--brand-primary);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-top: auto;
+            justify-content: center;
+        }
+        
+        .certification-link:hover {
+            background: var(--brand-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(26, 77, 94, 0.2);
+        }
+        
+        .certification-link span {
+            font-size: 1.1rem;
+        }
+        
+        /* Certification swiper navigation */
+        .certifications-swiper .swiper-button-next,
+        .certifications-swiper .swiper-button-prev {
+            color: #3b82f6;
+            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .certifications-swiper .swiper-button-next:after,
+        .certifications-swiper .swiper-button-prev:after {
+            font-size: 20px;
+
+        }
+        
+        .certifications-swiper .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: #cbd5e1;
+            opacity: 0.6;
+        }
+        
+        .certifications-swiper .swiper-pagination-bullet-active {
+            background: #3b82f6;
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .certifications-slider {
+                padding: 60px 5%;
+            }
+            
+            .certification-slide {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            
+            .certification-logo {
+                height: 150px;
+                padding: 20px;
+            }
+            
+            .certification-content {
+                padding: 20px;
+            }
+            
+            .certifications-swiper .swiper-button-next,
+            .certifications-swiper .swiper-button-prev {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .certifications-title {
+                font-size: 1.8rem;
+            }
+            
+            .certification-name {
+                font-size: 1.2rem;
+            }
+            
+            .certification-link {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+        }
         
         @media (max-width: 768px) {
             .cookie-buttons {
@@ -381,6 +586,195 @@
                 <p>Access to exclusive scholarships and funding opportunities for qualified students.</p>
             </div>
         </div>
+    </section>
+
+        <!-- PARTNER CERTIFICATIONS SLIDER SECTION -->
+    <section class="certifications-slider">
+        <div class="certifications-header">
+            <div class="certifications-eyebrow">Official Partnerships</div>
+            <h2 class="certifications-title">Verified University Certifications</h2>
+            <p class="certifications-subtitle">
+                Our official partnership agreements with leading global institutions. 
+                Click any certification to view detailed partnership documentation.
+            </p>
+        </div>
+
+        <div class="swiper certifications-swiper">
+            <div class="swiper-wrapper">
+                <!-- BSBI Certification -->
+                <div class="swiper-slide">
+                    <div class="certification-slide">
+                        <div class="certification-logo">
+                            <img src="assets/icons/BSBI.png" alt="Berlin School of Business and Innovation Logo">
+                        </div>
+                        <div class="certification-content">
+                            <h3 class="certification-name">Berlin School of Business and Innovation</h3>
+                            <div class="certification-location">
+                                <span>🇩🇪 Berlin, Germany</span>
+                            </div>
+                            <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000007TG2A" 
+                                target="_blank" 
+                                rel="noopener" 
+                                class="certification-link">
+                                View Certification <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CCTB Certification -->
+                <div class="swiper-slide">
+                    <div class="certification-slide">
+                        <div class="certification-logo">
+                            <img src="assets/icons/CCTB.png" alt="Canadian College of Technology and Business Logo">
+                        </div>
+                        <div class="certification-content">
+                            <h3 class="certification-name">Canadian College of Technology and Business</h3>
+                            <div class="certification-location">
+                                <span>🇨🇦 Vancouver, Canada</span>
+                            </div>
+                            <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000006nWhe" 
+                                target="_blank" 
+                                rel="noopener" 
+                                class="certification-link">
+                                View Certification <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UASE Certification -->
+                <div class="swiper-slide">
+                    <div class="certification-slide">
+                        <div class="certification-logo">
+                            <img src="assets/icons/UASE.png" alt="University of Applied Sciences Europe Logo">
+                        </div>
+                        <div class="certification-content">
+                            <h3 class="certification-name">University of Applied Sciences Europe</h3>
+                            <div class="certification-location">
+                                <span>🇳🇱 Amsterdam, Netherlands</span>
+                            </div>
+                            <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000007iDoj" 
+                                target="_blank" 
+                                rel="noopener" 
+                                class="certification-link">
+                                View Certification <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trebas Institute Certification -->
+                <div class="swiper-slide">
+                    <div class="certification-slide">
+                        <div class="certification-logo">
+                            <img src="assets/icons/TIC.png" alt="Trebas Institute Logo">
+                        </div>
+                        <div class="certification-content">
+                            <h3 class="certification-name">Trebas Institute</h3>
+                            <div class="certification-location">
+                                <span>🇨🇦 Montréal & Toronto, Canada</span>
+                            </div>
+                            <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000006jtHt" 
+                                target="_blank" 
+                                rel="noopener" 
+                                class="certification-link">
+                                View Certification <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TSOM Certification -->
+                <div class="swiper-slide">
+                    <div class="certification-slide">
+                        <div class="certification-logo">
+                            <img src="assets/icons/TSOM.png" alt="Toronto School of Management Logo">
+                        </div>
+                        <div class="certification-content">
+                            <h3 class="certification-name">Toronto School of Management</h3>
+                            <div class="certification-location">
+                                <span>🇨🇦 Toronto, Canada</span>
+                            </div>
+                            <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000007ewJ8" 
+                                target="_blank" 
+                                rel="noopener" 
+                                class="certification-link">
+                                View Certification <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UNF Certification -->
+                <div class="swiper-slide">
+                    <div class="certification-slide">
+                        <div class="certification-logo">
+                            <img src="assets/icons/UNF.svg" alt="University of Niagara Falls Canada Logo">
+                        </div>
+                        <div class="certification-content">
+                            <h3 class="certification-name">University of Niagara Falls Canada</h3>
+                            <div class="certification-location">
+                                <span>🇨🇦 Niagara Falls, Canada</span>
+                            </div>
+                            <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000007AG4I" 
+                                target="_blank" 
+                                rel="noopener" 
+                                class="certification-link">
+                                View Certification <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Herzing University Certification -->
+                <div class="swiper-slide">
+                    <div class="certification-slide">
+                        <div class="certification-logo">
+                            <img src="assets/icons/HU.png" alt="Herzing University Logo">
+                        </div>
+                        <div class="certification-content">
+                            <h3 class="certification-name">Herzing University</h3>
+                            <div class="certification-location">
+                                <span>🇺🇸 Wisconsin, USA</span>
+                            </div>
+                            <a href="https://cdn.apphero.io/pdf/a5eTf000000GNYXIA4.pdf" 
+                                target="_blank" 
+                                rel="noopener" 
+                                class="certification-link">
+                                View Certification <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Washington University Law Certification -->
+                <div class="swiper-slide">
+                    <div class="certification-slide">
+                        <div class="certification-logo">
+                            <img src="assets/icons/WUL.svg" alt="Washington University School of Law Logo">
+                        </div>
+                        <div class="certification-content">
+                            <h3 class="certification-name">Washington University School of Law</h3>
+                            <div class="certification-location">
+                                <span>🇺🇸 St. Louis, USA</span>
+                            </div>
+                            <a href="https://cdn.apphero.io/pdf/a5eTf000000FHRxIAO.pdf" 
+                                target="_blank" 
+                                rel="noopener" 
+                                class="certification-link">
+                                View Certification <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
     </section>
 
     <!-- Country Slider Section -->
@@ -680,6 +1074,66 @@
         
         // Show banner on page load
         window.addEventListener('load', showCookieBanner);
+
+        // Initialize Swiper for Certifications Slider
+        document.addEventListener('DOMContentLoaded', function() {
+            // Certifications Swiper
+            const certificationsSwiper = new Swiper('.certifications-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                    },
+                },
+            });
+             // Country Swiper (existing)
+            const countrySwiper = new Swiper('.countrySwiper', {
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 40,
+                    },
+                },
+            });
+        });
     </script>
 </body>
 </html>
