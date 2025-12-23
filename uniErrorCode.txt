@@ -53,24 +53,6 @@
                 </div>
             </a>
             
-            <!-- Card 9 -->
-            <a href="https://unfc.com/" target="_blank" rel="noopener" class="modern-card" data-country="canada">
-                <div class="card-image">
-                    <img src="assets/icons/unf-logo.png" alt="UNF Logo" class="university-logo">
-                    <div class="country-flag">🇨🇦</div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">University of Niagara Falls Canada</h3>
-                    <div class="card-location">
-                        <span class="city">Niagara Falls</span>
-                        <span class="country">Canada</span>
-                    </div>
-                    <p class="card-description">
-                        New, innovative university offering technology-focused programs in scenic location.
-                    </p>
-                </div>
-            </a>
-            
             <!-- Card 10 -->
             <a href="https://www.cuchicago.edu/" target="_blank" rel="noopener" class="modern-card" data-country="usa">
                 <div class="card-image">
@@ -85,24 +67,6 @@
                     </div>
                     <p class="card-description">
                         Comprehensive university offering liberal arts and professional programs.
-                    </p>
-                </div>
-            </a>
-            
-            <!-- Card 11 -->
-            <a href="https://law.wustl.edu/" target="_blank" rel="noopener" class="modern-card" data-country="usa">
-                <div class="card-image">
-                    <img src="assets/icons/washington-university-logo.png" alt="Washington University Logo" class="university-logo">
-                    <div class="country-flag">🇺🇸</div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Washington University School of Law</h3>
-                    <div class="card-location">
-                        <span class="city">St. Louis</span>
-                        <span class="country">United States</span>
-                    </div>
-                    <p class="card-description">
-                        Prestigious law school offering cutting-edge legal education with global perspectives.
                     </p>
                 </div>
             </a>
