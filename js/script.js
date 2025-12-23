@@ -1,4 +1,3 @@
-
 // Register GSAP Plugin
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fadeElements = document.querySelectorAll('.fade-in');
 
     const observerOptions = {
-        threshold: 0.1, // Trigger earlier (10% visibility)
+        threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
 
@@ -47,14 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Once visible, stop observing to save performance
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     fadeElements.forEach(el => {
-        // Check if element is ALREADY in viewport on load
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight) {
             el.classList.add('visible');
@@ -96,6 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Initialize Forms
+    initConsultationForm();
+    initNewsletterForm();
+    initSwiper();
 });
 
 gsap.from(".metric", {
@@ -171,171 +173,165 @@ gsap.to(".animate-footer", {
     ease: "power3.out"
 });
 
-// Navbar Scroll Effect
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-    const nav = document.querySelector('.navbar');
-    const currentScroll = window.scrollY;
-    
-    if (currentScroll > 50) {
-        nav.style.padding = "15px 5%";
-        nav.style.boxShadow = "0 10px 30px rgba(0,0,0,0.05)";
-    } else {
-        nav.style.padding = "25px 5%";
-        nav.style.boxShadow = "none";
-    }
-    
-    lastScroll = currentScroll;
-});
-
-// Newsletter Form Handler
-function handleNewsletter(event) {
-    event.preventDefault();
-    const email = event.target.querySelector('input').value;
-    alert(`Thank you for subscribing! We'll send updates to ${email}`);
-    event.target.reset();
-}
-
-// Smooth Scroll for Anchor Links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-
-// CTA Section Animations and Form Handling
-document.addEventListener('DOMContentLoaded', function() {
-    initCTASection();
-});
-
-function initCTASection() {
-    // Initialize animations
-    initCTAAnimations();
-    
-    // Initialize form handling
-    initContactForm();
-    
-    // Initialize form field animations
-    initFormAnimations();
-    
-    // Initialize stats animation
-    initStatsAnimation();
-}
-
-function initCTAAnimations() {
-    const ctaSection = document.querySelector('.cta-section');
-    if (!ctaSection) return;
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Animate content wrapper
-                const contentWrapper = document.querySelector('.cta-content-wrapper');
-                if (contentWrapper) {
-                    contentWrapper.classList.add('animated');
-                    
-                    // Stagger service items
-                    const serviceItems = document.querySelectorAll('.service-item');
-                    serviceItems.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, index * 100);
-                    });
-                }
-                
-                // Animate stats bar
-                const statsBar = document.querySelector('.cta-stats');
-                if (statsBar) {
-                    setTimeout(() => {
-                        statsBar.classList.add('animated');
-                    }, 300);
-                }
-                
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    });
-    
-    observer.observe(ctaSection);
-}
-
-function initContactForm() {
+// CONSULTATION FORM HANDLER
+function initConsultationForm() {
     const form = document.getElementById('consultationForm');
-    if (!form) return;
+    const resultDiv = document.getElementById('formResult');
     
-    form.addEventListener('submit', function(e) {
+    if (!form) return;
+
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Get form data
+        const submitBtn = document.getElementById('submitBtn');
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
         
-        // Simple validation
-        if (!validateForm(data)) {
+        // Validate form
+        if (!validateConsultationForm(data)) {
             return;
         }
         
         // Show loading state
-        const submitBtn = form.querySelector('.submit-btn');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = 'Sending...';
         submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Sending...';
+        resultDiv.style.display = 'none';
         
-        // Simulate API call (replace with actual API endpoint)
-        setTimeout(() => {
-            // Show success message
-            showFormSuccess(form, data);
+        try {
+            // Replace with your actual API endpoint
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    access_key: "YOUR_ACCESS_KEY_HERE", // Get free key at web3forms.com
+                    name: data.name,
+                    email: data.email,
+                    subject: "New Study Abroad Consultation Request from GlobalEd",
+                    from_name: "GlobalEd Contact Form"
+                })
+            });
+
+            const result = await response.json();
             
-            // Reset button
-            submitBtn.innerHTML = originalText;
+            if (response.ok && result.success) {
+                // Success message
+                resultDiv.innerHTML = `
+                    <div style="background: #10b981; color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 10px;">✓</div>
+                        <h4 style="margin: 0 0 8px 0;">Thank you, ${data.name}!</h4>
+                        <p style="margin: 0; opacity: 0.95; font-size: 0.95rem;">
+                            We've received your request. Our counselor will contact you within 24 hours.
+                        </p>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+                form.reset();
+                
+                // Track conversion (Google Analytics example)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_submission', {
+                        'event_category': 'Lead Generation',
+                        'event_label': 'Consultation Form'
+                    });
+                }
+            } else {
+                throw new Error(result.message || 'Submission failed');
+            }
+            
+        } catch (error) {
+            console.error('Form submission error:', error);
+            resultDiv.innerHTML = `
+                <div style="background: #ef4444; color: white; padding: 15px; border-radius: 8px;">
+                    <strong>Error:</strong> Unable to send your request. Please try again or email us directly at info@globaled.com
+                </div>
+            `;
+            resultDiv.style.display = 'block';
+        } finally {
             submitBtn.disabled = false;
-        }, 1500);
-    });
-    
-    // Add real-time validation
-    const inputs = form.querySelectorAll('input, select, textarea');
-    inputs.forEach(input => {
-        input.addEventListener('blur', function() {
-            validateField(this);
-        });
-        
-        input.addEventListener('input', function() {
-            clearFieldError(this);
-        });
+            submitBtn.innerHTML = 'Get Free Consultation →';
+        }
     });
 }
 
-function validateForm(data) {
-    let isValid = true;
-    
+function validateConsultationForm(data) {
     if (!data.name || data.name.trim().length < 2) {
-        showFieldError('name', 'Please enter your full name');
-        isValid = false;
+        alert('Please enter your full name');
+        return false;
     }
     
     if (!data.email || !isValidEmail(data.email)) {
-        showFieldError('email', 'Please enter a valid email address');
-        isValid = false;
+        alert('Please enter a valid email address');
+        return false;
     }
     
-    if (!data.interest) {
-        showFieldError('interest', 'Please select an area of interest');
-        isValid = false;
+    if (!data.consent) {
+        alert('Please agree to our privacy policy to continue');
+        return false;
     }
     
-    return isValid;
+    return true;
+}
+
+// NEWSLETTER FORM HANDLER
+function initNewsletterForm() {
+    const form = document.getElementById('newsletterForm');
+    const resultDiv = document.getElementById('newsletterResult');
+    
+    if (!form) return;
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        const email = formData.get('newsletter_email');
+        
+        if (!isValidEmail(email)) {
+            resultDiv.style.color = '#ef4444';
+            resultDiv.textContent = 'Please enter a valid email address';
+            return;
+        }
+        
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = '...';
+        
+        try {
+            // Replace with your newsletter API endpoint
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    access_key: "YOUR_ACCESS_KEY_HERE", // Get free key at web3forms.com
+                    email: email,
+                    subject: "New Newsletter Subscription - GlobalEd",
+                    from_name: "GlobalEd Newsletter"
+                })
+            });
+
+            const result = await response.json();
+            
+            if (response.ok && result.success) {
+                resultDiv.style.color = '#10b981';
+                resultDiv.textContent = '✓ Successfully subscribed!';
+                form.reset();
+            } else {
+                throw new Error('Subscription failed');
+            }
+            
+        } catch (error) {
+            console.error('Newsletter error:', error);
+            resultDiv.style.color = '#ef4444';
+            resultDiv.textContent = 'Error subscribing. Please try again.';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Join';
+        }
+    });
 }
 
 function isValidEmail(email) {
@@ -343,235 +339,21 @@ function isValidEmail(email) {
     return re.test(email);
 }
 
-function validateField(field) {
-    const value = field.value.trim();
-    const fieldId = field.id;
+// SWIPER INITIALIZATION
+function initSwiper() {
+    if (typeof Swiper === 'undefined') return;
     
-    if (field.required && !value) {
-        showFieldError(fieldId, 'This field is required');
-        return false;
-    }
-    
-    if (fieldId === 'email' && value && !isValidEmail(value)) {
-        showFieldError(fieldId, 'Please enter a valid email');
-        return false;
-    }
-    
-    clearFieldError(fieldId);
-    return true;
-}
-
-function showFieldError(fieldId, message) {
-    const field = document.getElementById(fieldId);
-    if (!field) return;
-    
-    // Remove existing error
-    clearFieldError(fieldId);
-    
-    // Add error class
-    field.classList.add('error');
-    
-    // Create error message element
-    const errorElement = document.createElement('div');
-    errorElement.className = 'field-error';
-    errorElement.textContent = message;
-    errorElement.style.cssText = `
-        color: #ef4444;
-        font-size: 0.75rem;
-        margin-top: 4px;
-    `;
-    
-    field.parentNode.appendChild(errorElement);
-}
-
-function clearFieldError(fieldId) {
-    const field = document.getElementById(fieldId);
-    if (!field) return;
-    
-    field.classList.remove('error');
-    
-    const existingError = field.parentNode.querySelector('.field-error');
-    if (existingError) {
-        existingError.remove();
-    }
-}
-
-function showFormSuccess(form, data) {
-    // Create success message
-    const successDiv = document.createElement('div');
-    successDiv.className = 'form-success';
-    successDiv.innerHTML = `
-        <div style="
-            background: #10b981;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 20px;
-        ">
-            <div style="font-size: 1.5rem; margin-bottom: 10px;">✓</div>
-            <h3 style="margin: 0 0 8px 0;">Thank you, ${data.name}!</h3>
-            <p style="margin: 0; opacity: 0.9;">
-                We've received your request. Our counselor will contact you within 24 hours.
-            </p>
-        </div>
-    `;
-    
-    // Replace form with success message
-    form.style.display = 'none';
-    form.parentNode.insertBefore(successDiv, form);
-    
-    // Send data to analytics/CRM (example)
-    sendToAnalytics(data);
-}
-
-function sendToAnalytics(data) {
-    // Replace with your analytics tracking code
-    console.log('Form submitted:', data);
-    
-    // Example: Google Analytics event
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'consultation_request', {
-            'event_category': 'Lead Generation',
-            'event_label': data.interest
-        });
-    }
-}
-
-function initFormAnimations() {
-    const formGroups = document.querySelectorAll('.form-group');
-    formGroups.forEach((group, index) => {
-        group.style.opacity = '0';
-        group.style.transform = 'translateY(20px)';
-        
-        setTimeout(() => {
-            group.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            group.style.opacity = '1';
-            group.style.transform = 'translateY(0)';
-        }, index * 100);
-    });
-}
-
-function initStatsAnimation() {
-    const statNumbers = document.querySelectorAll('.stat-number');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                statNumbers.forEach(stat => {
-                    const target = parseInt(stat.textContent.replace('+', '').replace('%', ''));
-                    animateCounter(stat, target);
-                });
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.5
-    });
-    
-    const statsBar = document.querySelector('.cta-stats');
-    if (statsBar) observer.observe(statsBar);
-}
-
-function animateCounter(element, target) {
-    let current = 0;
-    const increment = target / 60;
-    const suffix = element.textContent.includes('+') ? '+' : 
-                    element.textContent.includes('%') ? '%' : '';
-    
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            current = target;
-            clearInterval(timer);
-        }
-        element.textContent = Math.floor(current) + suffix;
-    }, 30);
-}
-
-// Add error styles to CSS
-const errorStyles = `
-    .form-group input.error,
-    .form-group select.error,
-    .form-group textarea.error {
-        border-color: #ef4444;
-        background: #fef2f2;
-    }
-    
-    .form-group input.error:focus,
-    .form-group select.error:focus,
-    .form-group textarea.error:focus {
-        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-    }
-`;
-
-// Inject error styles
-const styleSheet = document.createElement('style');
-styleSheet.textContent = errorStyles;
-document.head.appendChild(styleSheet);
-
-
-
-
-const form = document.getElementById('consultationForm');
-const result = document.getElementById('result');
-
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-    
-    result.innerHTML = "Please wait...";
-    result.style.color = "var(--brand-primary)";
-
-    fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                access_key: "YOUR_ACCESS_KEY_HERE", // Get one at web3forms.com
-                name: object.name,
-                email: object.email,
-                subject: "New Study Abroad Consultation Request",
-            })
-        })
-        .then(async (response) => {
-            let json = await response.json();
-            if (response.status == 200) {
-                result.innerHTML = "Success! We will contact you shortly.";
-                result.style.color = "var(--success)";
-                form.reset();
-            } else {
-                console.log(response);
-                result.innerHTML = json.message;
-                result.style.color = "var(--error)";
-            }
-        })
-        .catch(error => {
-            console.log(error);
-            result.innerHTML = "Something went wrong!";
-            result.style.color = "var(--error)";
-        });
-});
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const swiper = new Swiper('.countrySwiper', {
+    new Swiper('.countrySwiper', {
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
         grabCursor: true,
         
-        // --- ADDED AUTOPLAY LOGIC ---
         autoplay: {
-            delay: 3000, // Slides every 3 seconds
-            disableOnInteraction: false, // Keeps sliding after user interaction
-            pauseOnMouseEnter: true, // Optional: pauses when user hovers
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
         },
-        // ----------------------------
 
         navigation: {
             nextEl: '.swiper-button-next',
@@ -584,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function() {
         breakpoints: {
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
-            1400: { slidesPerView: 4 } // Added for larger screens
+            1400: { slidesPerView: 4 }
         }
     });
-});
+}

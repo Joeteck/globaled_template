@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | GlobalEd & Tour | Premium International Education</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Terms of Service Page Specific Styles */
+        .terms-page {
+            padding: 140px 6% 100px;
+            background: var(--white);
+            min-height: 100vh;
+        }
+        
+        .terms-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .terms-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .terms-badge {
+            display: inline-block;
+            padding: 10px 25px;
+            background: rgba(26, 77, 94, 0.1);
+            border: 1px solid var(--brand-primary);
+            color: var(--brand-primary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            border-radius: 0;
+        }
+        
+        .terms-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 800;
+            color: var(--brand-primary);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        
+        .terms-update {
+            color: var(--brand-secondary);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+        
+        .terms-intro {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Content Sections */
+        .terms-content {
+            background: var(--bg-light);
+            padding: 50px;
+            border: 1px solid var(--border-subtle);
+        }
+        
+        .terms-section {
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid var(--border-subtle);
+            position: relative;
+        }
+        
+        .terms-section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--brand-primary);
+            color: var(--white);
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 0;
+            flex-shrink: 0;
+        }
+        
+        .section-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            line-height: 1.2;
+        }
+        
+        .section-content {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-left: 65px;
+        }
+        
+        .section-content p {
+            margin-bottom: 15px;
+        }
+        
+        /* Important Notice Box */
+        .important-notice {
+            background: rgba(227, 154, 76, 0.1);
+            border: 2px solid var(--brand-secondary);
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .important-notice::before {
+            content: "⚠️";
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            background: var(--white);
+            padding: 0 10px;
+            font-size: 1.2rem;
+        }
+        
+        .important-notice strong {
+            color: var(--brand-primary);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Warning Box */
+        .warning-box {
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid #ef4444;
+        }
+        
+        .warning-box strong {
+            color: #ef4444;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Info Box */
+        .info-box {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .info-box strong {
+            color: #3b82f6;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Lists */
+        .terms-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .terms-list li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            position: relative;
+        }
+        
+        .terms-list li::before {
+            content: "•";
+            color: var(--brand-secondary);
+            font-size: 1.5rem;
+            position: absolute;
+            left: -15px;
+            top: -2px;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: var(--brand-primary);
+            color: var(--white);
+            padding: 35px;
+            margin: 40px 0;
+            border-radius: 0;
+        }
+        
+        .contact-section h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .contact-section p {
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .contact-email {
+            color: var(--brand-secondary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+        
+        /* Agreement Box */
+        .agreement-box {
+            background: rgba(26, 77, 94, 0.05);
+            border: 2px solid var(--brand-primary);
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .agreement-box p {
+            font-size: 1.1rem;
+            color: var(--brand-primary);
+            margin-bottom: 20px;
+        }
+        
+        /* Navigation */
+        .terms-navigation {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: var(--brand-primary);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid var(--brand-primary);
+        }
+        
+        .nav-link:hover {
+            background: var(--brand-primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.secondary {
+            background: transparent;
+            color: var(--brand-primary);
+            border: 1px solid var(--brand-primary);
+        }
+        
+        .nav-link.secondary:hover {
+            background: var(--brand-primary);
+            color: var(--white);
+        }
+        
+        /* Footer for Terms Page */
+        .terms-footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+        
+        .terms-footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .terms-footer-links a {
+            color: var(--brand-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .terms-footer-links a:hover {
+            color: var(--brand-secondary);
+            text-decoration: underline;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .terms-page {
+                padding: 120px 5% 60px;
+            }
+            
+            .terms-content {
+                padding: 30px 20px;
+            }
+            
+            .terms-section {
+                margin-bottom: 40px;
+                padding-bottom: 40px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .section-content {
+                margin-left: 0;
+            }
+            
+            .terms-navigation {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+            
+            .nav-link {
+                text-align: center;
+                justify-content: center;
+            }
+            
+            .terms-footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .terms-title {
+                font-size: 2rem;
+            }
+            
+            .terms-content {
+                padding: 20px 15px;
+            }
+            
+            .section-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            .contact-section {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div><a href="index.html"><img src="assets/icons/globaled.png" alt="Globaled" class="logo"/></a></div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+                <li><a href="about.html" onclick="closeMenu()">About</a></li>
+                <li><a href="universities.html" onclick="closeMenu()">Universities</a></li>
+                <li><a href="index.html#contact" class="nav-cta" onclick="closeMenu()">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="terms-page">
+        <div class="terms-container">
+            <header class="terms-header">
+                <div class="terms-badge">Legal Agreement</div>
+                <h1 class="terms-title">Terms of Service</h1>
+                <div class="terms-update">Last updated: January 2024</div>
+                <p class="terms-intro">
+                    These Terms of Service govern your use of GlobalEd & Tour Inc.'s website and services. 
+                    By accessing our website or using our services, you agree to be bound by these terms.
+                </p>
+            </header>
+            
+            <div class="terms-content">
+                <!-- Agreement Box -->
+                <div class="agreement-box">
+                    <p><strong>IMPORTANT:</strong> By using our website and services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</p>
+                </div>
+                
+                <!-- Section 1 -->
+                <section class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h2 class="section-title">About GlobalEd & Tour</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>GlobalEd & Tour Inc. is a premium international education consultancy providing:</p>
+                        <ul class="terms-list">
+                            <li>University admissions consulting and guidance</li>
+                            <li>Student recruitment support for partner institutions</li>
+                            <li>Visa application assistance and documentation support</li>
+                            <li>Pre-departure orientation and settlement services</li>
+                            <li>Scholarship and funding opportunity guidance</li>
+                        </ul>
+                        <p>Our services are designed to assist students in navigating the complexities of international education pathways.</p>
+                    </div>
+                </section>
+                
+                <!-- Section 2 -->
+                <section class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h2 class="section-title">Website Usage & Acceptable Conduct</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>By using our website, you agree to the following conditions:</p>
+                        <ul class="terms-list">
+                            <li>Use the website lawfully and in accordance with these terms</li>
+                            <li>Provide accurate and complete information in all forms and communications</li>
+                            <li>Not attempt to gain unauthorized access to any part of the website</li>
+                            <li>Not use the website for any fraudulent or unlawful purpose</li>
+                            <li>Not interfere with or disrupt the website's functionality</li>
+                        </ul>
+                        
+                        <div class="info-box">
+                            <strong>Website Availability</strong>
+                            We reserve the right to modify, suspend, or discontinue any part of our website or services at any time without prior notice. We do not guarantee uninterrupted website access.
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Section 3 -->
+                <section class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h2 class="section-title">Service Limitations & No Guarantees</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="warning-box">
+                            <strong>CRITICAL NOTICE</strong>
+                            GlobalEd provides guidance, support, and advisory services only. We do NOT guarantee:
+                        </div>
+                        
+                        <ul class="terms-list">
+                            <li><strong>University Admissions:</strong> Admission decisions are made solely by educational institutions</li>
+                            <li><strong>Visa Approvals:</strong> Visa decisions are made by government immigration authorities</li>
+                            <li><strong>Scholarship Awards:</strong> Scholarship decisions are made by awarding bodies</li>
+                            <li><strong>Specific Outcomes:</strong> Any particular educational or immigration outcome</li>
+                        </ul>
+                        
+                        <div class="important-notice">
+                            <strong>Understanding Our Role</strong>
+                            While we strive to provide accurate guidance and maximize your chances of success, final decisions on admissions, visas, and scholarships are made by third parties (universities and government authorities) over which we have no control.
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Section 4 -->
+                <section class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h2 class="section-title">Accuracy of Information & Your Responsibilities</h2>
+                    </div>
+                    <div class="section-content">
+                        <p><strong>Your Responsibility:</strong> You are solely responsible for ensuring the accuracy, completeness, and truthfulness of all information you provide to us, including but not limited to:</p>
+                        <ul class="terms-list">
+                            <li>Academic records and transcripts</li>
+                            <li>Personal identification documents</li>
+                            <li>Financial documentation</li>
+                            <li>Contact information and personal details</li>
+                            <li>Any other information required for applications</li>
+                        </ul>
+                        
+                        <div class="warning-box">
+                            <strong>Consequences of Inaccurate Information</strong>
+                            Providing incorrect, incomplete, or misleading information may result in: application rejection, visa denial, revocation of admission, financial loss, and may affect your future immigration and educational opportunities.
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Section 5 -->
+                <section class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h2 class="section-title">Intellectual Property Rights</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>All content, materials, and intellectual property on this website are owned by GlobalEd & Tour Inc. or licensed to us, including but not limited to:</p>
+                        <ul class="terms-list">
+                            <li>Website design, layout, and functionality</li>
+                            <li>Text, graphics, logos, and images</li>
+                            <li>Educational resources and guidance materials</li>
+                            <li>Proprietary methodologies and processes</li>
+                            <li>Brand names and trademarks</li>
+                        </ul>
+                        
+                        <div class="info-box">
+                            <strong>Permissions & Restrictions</strong>
+                            You may view and download website content for personal, non-commercial use only. Any reproduction, distribution, modification, or commercial use of our content requires prior written permission from GlobalEd & Tour Inc.
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Section 6 -->
+                <section class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h2 class="section-title">Third-Party Links & External Resources</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>Our website may contain links to third-party websites, including:</p>
+                        <ul class="terms-list">
+                            <li>Partner university websites</li>
+                            <li>Government immigration portals</li>
+                            <li>Educational resources and testing platforms</li>
+                            <li>Scholarship and funding organizations</li>
+                        </ul>
+                        
+                        <div class="important-notice">
+                            <strong>External Content Disclaimer</strong>
+                            We are not responsible for the content, accuracy, or practices of third-party websites. Links are provided for convenience only and do not constitute endorsement. You access third-party sites at your own risk.
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Section 7 -->
+                <section class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h2 class="section-title">Limitation of Liability</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>To the maximum extent permitted by applicable law, GlobalEd & Tour Inc. shall not be liable for:</p>
+                        <ul class="terms-list">
+                            <li>Any indirect, incidental, or consequential damages</li>
+                            <li>Loss of data, opportunities, or profits</li>
+                            <li>Damages resulting from third-party decisions (admissions, visas, scholarships)</li>
+                            <li>Errors or omissions in website content</li>
+                            <li>Technical issues or website downtime</li>
+                        </ul>
+                        
+                        <div class="info-box">
+                            <strong>Maximum Liability</strong>
+                            Our total liability to you for any claim arising from these terms or your use of our services shall not exceed the amount paid by you (if any) for the specific service giving rise to the claim.
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Section 8 -->
+                <section class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">8</div>
+                        <h2 class="section-title">Termination & Account Suspension</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>We reserve the right to terminate or suspend access to our website and services if we reasonably believe that:</p>
+                        <ul class="terms-list">
+                            <li>You have violated these Terms of Service</li>
+                            <li>You have engaged in fraudulent or illegal activities</li>
+                            <li>You have provided false or misleading information</li>
+                            <li>Required by law or regulatory authorities</li>
+                            <li>To protect our rights, property, or safety</li>
+                        </ul>
+                        
+                        <p>Termination may occur without prior notice and may result in the loss of access to your information and services.</p>
+                    </div>
+                </section>
+                
+                <!-- Section 9 -->
+                <section class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">9</div>
+                        <h2 class="section-title">Governing Law & Dispute Resolution</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>These Terms of Service are governed by and construed in accordance with the laws of Monrovia, Liberia,, without regard to its conflict of law provisions.</p>
+                        
+                        <div class="info-box">
+                            <strong>Jurisdiction</strong>
+                            Any legal action or proceeding arising under these terms shall be brought exclusively in the courts located in Monrovia, Liberia, and you consent to personal jurisdiction in such courts.
+                        </div>
+                        
+                        <p><strong>Alternative Dispute Resolution:</strong> We encourage attempting to resolve disputes informally through direct communication before pursuing formal legal action.</p>
+                    </div>
+                </section>
+                
+                <!-- Section 10 -->
+                <section class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">10</div>
+                        <h2 class="section-title">Contact & Communication</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="contact-section">
+                            <h3>Contact Information</h3>
+                            <p>For questions, concerns, or notices regarding these Terms of Service, please contact us:</p>
+                            <p><strong>Email:</strong> <a href="mailto:info@globaledllc.com" class="contact-email">info@globaledllc.com</a></p>
+                            <p><strong>Response Time:</strong> We aim to respond to all legal inquiries within 5-7 business days.</p>
+                        </div>
+                        
+                        <p><strong>Electronic Communications:</strong> By using our services, you consent to receive electronic communications from us, including notices, updates, and promotional materials. You may opt out of promotional communications at any time.</p>
+                    </div>
+                </section>
+                
+                <!-- Navigation -->
+                <div class="terms-navigation">
+                    <a href="index.html" class="nav-link secondary">
+                        ← Back to Home
+                    </a>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="privacy-policy.html" class="nav-link">
+                            Privacy Policy
+                        </a>
+                        <a href="cookie-policy.html" class="nav-link">
+                            Cookie Policy
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <footer class="terms-footer">
+                <p>© 2024 GlobalEd & Tour Inc. All rights reserved.</p>
+                <div class="terms-footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="universities.html">Universities</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+        
+        // Smooth scroll for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Highlight current page in navigation
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Add scroll animations for sections
+            const sections = document.querySelectorAll('.terms-section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Add importance indicators
+            const warningBoxes = document.querySelectorAll('.warning-box');
+            warningBoxes.forEach(box => {
+                box.innerHTML = '<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">⚠️ <strong>' + 
+                box.querySelector('strong').textContent + '</strong></div>' + 
+                box.innerHTML.replace(/<strong>.*?<\/strong>/, '').trim();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -7,19 +7,100 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Cookie Consent Banner Styling -->
+    <style>
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 77, 94, 0.98);
+            color: white;
+            padding: 20px;
+            z-index: 9999;
+            display: none;
+            backdrop-filter: blur(10px);
+            border-top: 2px solid var(--brand-secondary);
+        }
+        .cookie-banner.show {
+            display: block;
+        }
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .cookie-text {
+            flex: 1;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .cookie-text a {
+            color: var(--brand-secondary);
+            text-decoration: underline;
+        }
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .cookie-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .cookie-accept {
+            background: var(--brand-secondary);
+            color: var(--brand-primary);
+        }
+        .cookie-accept:hover {
+            transform: scale(1.05);
+        }
+        .cookie-decline {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        @media (max-width: 768px) {
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
 
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies. 
+                <a href="privacy-policy.html">Privacy Policy</a> | <a href="cookie-policy.html">Cookie Policy</a>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
+                <button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar">
         <div class="nav-container">
-            <div><img src="assets/icons/globaled.png" alt="Globaled" class="logo"/></div>
+            <a href="index.html"><img src="assets/icons/globaled.png" alt="Globaled" class="logo"/></a>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                <li><a href="index.html" onclick="closeMenu()">Home</a></li>
                 <li><a href="about.html" onclick="closeMenu()">About</a></li>
                 <li><a href="universities.html" onclick="closeMenu()">Universities</a></li>
                 <li><a href="#contact" class="nav-cta" onclick="closeMenu()">Get Started</a></li>
@@ -41,7 +122,7 @@
                     visa guidance, and student relocation — without guesswork.
                 </p>
                 <div class="hero-actions">
-                    <a href="#contact" class="hero-btn primary">Begin Consultation</a>
+                    <a href=" #contact" class="hero-btn primary">Begin Consultation</a>
                     <a href="universities.html" class="hero-btn outline">View Partner Universities</a>
                 </div>
                 <div class="hero-metrics">
@@ -55,7 +136,7 @@
                     </div>
                     <div class="metric">
                         <strong>Trusted</strong>
-                        <span>Global Partners</span>
+                        <span>Partners</span>
                     </div>
                 </div>
             </div>
@@ -104,8 +185,8 @@
                 <p>Top universities in 4+ major destinations with verified partnerships.</p>
             </div>
             <div class="feature-card secondary">
-                <!-- <h3>End-to-End</h3>
-                <p>Complete support from initial consultation through arrival and settlement.</p> -->
+                <h3>End-to-End</h3>
+                <p>Complete support from initial consultation through arrival and settlement.</p>
             </div>
             <div class="feature-card">
                 <h3>Scholarship Aid</h3>
@@ -206,8 +287,8 @@
                 <h2 class="cta-title">Ready to begin your <br><span>study abroad journey?</span></h2>
                 
                 <p class="cta-description">
-                    Join 250+ students who have successfully enrolled in top-tier universities. 
-                    Get expert guidance on 100+ programs across 20+ global locations.
+                    Join students who have successfully enrolled in top-tier universities. 
+                    Get expert guidance on programs across global locations.
                 </p>
                 
                 <div class="study-features">
@@ -218,21 +299,29 @@
                 </div>
 
                 <div class="cta-form">
-                    <h3 class="form-title">Speak with a Study Counselor</h3>
+                    <h3 class="form-title">Start Your Journey</h3>
                     <form id="consultationForm">
                         <div class="form-row">
                             <div class="form-group">
-                                <label>Full Name</label>
+                                <label>Full Name *</label>
                                 <input type="text" name="name" placeholder="Your name" class="cta-input" required>
                             </div>
                             <div class="form-group">
-                                <label>Email Address</label>
+                                <label>Email Address *</label>
                                 <input type="email" name="email" placeholder="Your email" class="cta-input" required>
                             </div>
                         </div>
+                        
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; font-weight: 400; text-transform: none;">
+                                <input type="checkbox" name="consent" required style="margin-top: 3px;">
+                                <span>I agree to receive communications from GlobalEd & Tour and have read the <a href="privacy-policy.html" style="color: var(--brand-secondary);">Privacy Policy</a></span>
+                            </label>
+                        </div>
+                        
                         <button type="submit" class="submit-btn" id="submitBtn">Get Free Consultation →</button>
                     </form>
-                    <div id="result" style="margin-top: 15px; font-weight: 600;"></div>
+                    <div id="formResult" style="margin-top: 15px; padding: 15px; border-radius: 8px; display: none;"></div>
                     
                     <div class="form-assurance">
                         <span>✓ 100% Free Service</span>
@@ -244,17 +333,21 @@
     </section>
 
     <!-- FOOTER SECTION -->
-    <footer class="footer" id="contact">
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-column brand-col animate-footer">
-                    <div><img src="assets/icons/globaled.png" alt="Globaled" class="logo"/></div>
+                    <a href="index.html"><img src="assets/icons/globaled.png" alt="Globaled" class="logo"/></a>
                     <p class="footer-bio">
                         Your trusted bridge to international excellence. We simplify the journey to world-class education with expert guidance and a global network.
                     </p>
                     <div class="social-links">
-                        <a href="https://facebook.com/TravelShoplr" target="_blank"><img src="assets/icons/facebook.png" class="social-icon" aria-label="Facebook" alt="Fb"/></a>
-                        <a href="https://www.instagram.com/globaled_?igsh=MWtsdDJhZGp1cnVjOQ%3D%3D&utm_source=qr" target="_blank"><img src="assets/icons/social.png" class="social-icon" aria-label="Instagram" alt="Ig"/></a>
+                        <a href="https://facebook.com/TravelShoplr" target="_blank" rel="noopener" aria-label="Visit our Facebook page">
+                            <img src="assets/icons/facebook.png" class="social-icon" alt="Facebook"/>
+                        </a>
+                        <a href="https://www.instagram.com/globaled_?igsh=MWtsdDJhZGp1cnVjOQ%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Visit our Instagram page">
+                            <img src="assets/icons/social.png" class="social-icon" alt="Instagram"/>
+                        </a>
                     </div>
                 </div>
 
@@ -264,28 +357,31 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="universities.html">Universities</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href=" #contact">Get Started</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-column animate-footer">
-                    <h4>Destinations</h4>
-                    <ul>
-                        <li><a href="#">Study in USA</a></li>
-                        <li><a href="#">Study in Canada</a></li>
-                        <li><a href="#">Study in UK</a></li>
-                        <li><a href="#">Study in Germany</a></li>
-                        <li><a href="#">Study in Netherlands</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column newsletter-col animate-footer">
-                    <h4>Stay Updated</h4>
-                    <p>Subscribe for scholarship alerts and international education news.</p>
-                    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-                        <input type="email" placeholder="Your email address" required>
-                        <button type="submit">Join</button>
-                    </form>
+                <div class="footer-column offices-col animate-footer">
+                    <h4>Our Global Offices</h4>
+                    <div class="office-locations">
+                        <div class="office-item">
+                            <strong>Germany 🇩🇪</strong>
+                            <p>Hobrechtstraße 3, 12043 Berlin</p>
+                            <a href="tel:+4915213716590">+49 152 13716590</a>
+                            <a href="mailto:Kafumba@globaledllc.com">Kafumba@globaledllc.com</a>
+                        </div>
+                        <div class="office-item">
+                            <strong>Liberia 🇱🇷</strong>
+                            <p>Jacob Town, Paynesville, Monrovia</p>
+                            <a href="tel:+231886213461">+231 886 213461</a>
+                            <a href="mailto:info@globaledllc.com">info@globaledllc.com</a>
+                        </div>
+                        <div class="office-item">
+                            <strong>Ghana 🇬🇭</strong>
+                            <p>Al-Rash Heights, East Legon Hills</p>
+                            <a href="tel:+233553258981">+233 553 258 981</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -294,9 +390,9 @@
                     <p>&copy; 2024 GlobalEd & Tour. All rights reserved.</p>
                 </div>
                 <div class="footer-secondary-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Cookie Policy</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="cookie-policy.html">Cookie Policy</a>
                 </div>
             </div>
         </div>
@@ -304,8 +400,32 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-        <!-- Add Swiper JS from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/script.js"></script>
+    
+    <!-- Cookie Consent Script -->
+    <script>
+        // Cookie Consent Management
+        function showCookieBanner() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                document.getElementById('cookieBanner').classList.add('show');
+            }
+        }
+        
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieBanner').classList.remove('show');
+            // Initialize analytics or tracking here if needed
+        }
+        
+        function declineCookies() {
+            localStorage.setItem('cookieConsent', 'declined');
+            document.getElementById('cookieBanner').classList.remove('show');
+        }
+        
+        // Show banner on page load
+        window.addEventListener('load', showCookieBanner);
+    </script>
 </body>
 </html>

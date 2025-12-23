@@ -1,84 +1,108 @@
-    <!-- Filter Section -->
-    <section class="filter-section">
-        <div class="filter-grid">
-            <div class="filter-box active" data-filter="all">
-                <i>🌍</i>
-                All Universities
-            </div>
-            <div class="filter-box" data-filter="usa">
-                <i>🇺🇸</i>
-                USA
-            </div>
-            <div class="filter-box" data-filter="canada">
-                <i>🇨🇦</i>
-                Canada
-            </div>
-            <div class="filter-box" data-filter="germany">
-                <i>🇩🇪</i>
-                Germany
-            </div>
-            <div class="filter-box" data-filter="ireland">
-                <i>🇮🇪</i>
-                Ireland
-            </div>
-            <div class="filter-box" data-filter="netherlands">
-                <i>🇳🇱</i>
-                Netherlands
-            </div>
-        </div>
-    </section>
-
-    <!-- Universities Grid -->
-    <section class="universities-grid-section">
-        <div class="grid-header">
-            <h2 class="grid-title">Partner Institutions Grid</h2>
-            <p class="grid-subtitle">
-                Click any institution to view detailed information, programs, and partnership benefits
-            </p>
-        </div>
-        
-        <div class="universities-master-grid" id="universitiesGrid">
-            <!-- Grid boxes will be populated by JavaScript -->
-        </div>
-    </section>
-
-    <!-- University Modal -->
-    <div class="university-modal" id="universityModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="modal-close" id="modalClose">&times;</button>
-                <h2 id="modalTitle" style="font-size: 2rem; margin-bottom: 10px;"></h2>
-                <div id="modalLocation" style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 20px;"></div>
-                <div class="partnership-badge">🤝 Official Partner Institution</div>
-            </div>
             
-            <div class="modal-body" style="padding: 40px;">
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 40px;">
-                    <div>
-                        <h3 style="font-family: 'Manrope'; color: var(--brand-primary); margin-bottom: 15px;">About</h3>
-                        <p id="modalDescription" style="color: var(--gray-600); line-height: 1.7;"></p>
-                    </div>
-                    <div>
-                        <h3 style="font-family: 'Manrope'; color: var(--brand-primary); margin-bottom: 15px;">Key Programs</h3>
-                        <p id="modalPrograms" style="color: var(--gray-600); line-height: 1.7;"></p>
-                    </div>
-                    <div>
-                        <h3 style="font-family: 'Manrope'; color: var(--brand-primary); margin-bottom: 15px;">Global Rankings</h3>
-                        <p id="modalRankings" style="color: var(--gray-600); line-height: 1.7;"></p>
-                    </div>
-                    <div>
-                        <h3 style="font-family: 'Manrope'; color: var(--brand-primary); margin-bottom: 15px;">Partnership Benefits</h3>
-                        <p id="modalBenefits" style="color: var(--gray-600); line-height: 1.7;"></p>
-                    </div>
+            <!-- Card 6 -->
+            <a href="https://dickinsonlaw.psu.edu/" target="_blank" rel="noopener" class="modern-card" data-country="usa">
+                <div class="card-image">
+                    <img src="assets/icons/penn-state-logo.png" alt="Penn State Logo" class="university-logo">
+                    <div class="country-flag">🇺🇸</div>
                 </div>
-                
-                <div style="background: var(--bg-light); padding: 30px; border: 1px solid var(--border-subtle);">
-                    <h3 style="font-family: 'Manrope'; color: var(--brand-primary); margin-bottom: 15px;">Application Through GlobalEd</h3>
-                    <p style="color: var(--gray-600); margin-bottom: 20px;">Apply through our official partnership for priority processing, dedicated support, and exclusive scholarship opportunities.</p>
-                    <button id="modalApplyBtn" style="padding: 12px 30px; background: var(--brand-primary); color: white; border: none; font-weight: 600; cursor: pointer; transition: background 0.3s ease;">
-                        Begin Application Process →
-                    </button>
+                <div class="card-content">
+                    <h3 class="card-title">Penn State Dickinson Law</h3>
+                    <div class="card-location">
+                        <span class="city">Carlisle, PA</span>
+                        <span class="country">United States</span>
+                    </div>
+                    <p class="card-description">
+                        Historic law school combining traditional legal education with modern innovation.
+                    </p>
                 </div>
-            </div>
-        </div>
-    </div>
+            </a>
+            
+            <!-- Card 7 -->
+            <a href="https://www.limcollege.edu/" target="_blank" rel="noopener" class="modern-card" data-country="usa">
+                <div class="card-image">
+                    <img src="assets/icons/lim-college-logo.png" alt="LIM College Logo" class="university-logo">
+                    <div class="country-flag">🇺🇸</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">LIM College</h3>
+                    <div class="card-location">
+                        <span class="city">New York City</span>
+                        <span class="country">United States</span>
+                    </div>
+                    <p class="card-description">
+                        Specialized fashion business college in Manhattan blending business, tech, and fashion.
+                    </p>
+                </div>
+            </a>
+            
+            <!-- Card 8 -->
+            <a href="https://www.ibat.ie/" target="_blank" rel="noopener" class="modern-card" data-country="ireland">
+                <div class="card-image">
+                    <img src="assets/icons/ibat-logo.png" alt="IBAT Logo" class="university-logo">
+                    <div class="country-flag">🇮🇪</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">IBAT College Dublin</h3>
+                    <div class="card-location">
+                        <span class="city">Dublin</span>
+                        <span class="country">Ireland</span>
+                    </div>
+                    <p class="card-description">
+                        Ireland's leading business college offering practical, industry-focused education.
+                    </p>
+                </div>
+            </a>
+            
+            <!-- Card 9 -->
+            <a href="https://unfc.com/" target="_blank" rel="noopener" class="modern-card" data-country="canada">
+                <div class="card-image">
+                    <img src="assets/icons/unf-logo.png" alt="UNF Logo" class="university-logo">
+                    <div class="country-flag">🇨🇦</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">University of Niagara Falls Canada</h3>
+                    <div class="card-location">
+                        <span class="city">Niagara Falls</span>
+                        <span class="country">Canada</span>
+                    </div>
+                    <p class="card-description">
+                        New, innovative university offering technology-focused programs in scenic location.
+                    </p>
+                </div>
+            </a>
+            
+            <!-- Card 10 -->
+            <a href="https://www.cuchicago.edu/" target="_blank" rel="noopener" class="modern-card" data-country="usa">
+                <div class="card-image">
+                    <img src="assets/icons/CUC.png" alt="Concordia Logo" class="university-logo">
+                    <div class="country-flag">🇺🇸</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Concordia University Chicago</h3>
+                    <div class="card-location">
+                        <span class="city">Chicago, IL</span>
+                        <span class="country">United States</span>
+                    </div>
+                    <p class="card-description">
+                        Comprehensive university offering liberal arts and professional programs.
+                    </p>
+                </div>
+            </a>
+            
+            <!-- Card 11 -->
+            <a href="https://law.wustl.edu/" target="_blank" rel="noopener" class="modern-card" data-country="usa">
+                <div class="card-image">
+                    <img src="assets/icons/washington-university-logo.png" alt="Washington University Logo" class="university-logo">
+                    <div class="country-flag">🇺🇸</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Washington University School of Law</h3>
+                    <div class="card-location">
+                        <span class="city">St. Louis</span>
+                        <span class="country">United States</span>
+                    </div>
+                    <p class="card-description">
+                        Prestigious law school offering cutting-edge legal education with global perspectives.
+                    </p>
+                </div>
+            </a>

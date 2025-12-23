@@ -387,24 +387,25 @@ body {
 }
 
 /* FOOTER */
+/* Compact Footer with 2-Column Office Layout */
 .footer {
     background-color: var(--brand-primary);
     color: var(--white);
-    padding: 100px 0 40px 0;
+    padding: 80px 0 40px 0; /* Reduced from 100px */
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 0.8fr 1.4fr;
+    gap: 60px;
+    margin-bottom: 60px; /* Reduced from 80px */
 }
 
 .footer-container {
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 5%;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 0.8fr 0.8fr 1.5fr;
-    gap: 60px;
-    margin-bottom: 80px;
 }
 
 .footer-column h4 {
@@ -541,6 +542,102 @@ body {
 .animate-footer {
     opacity: 0;
     transform: translateY(30px);
+}
+
+/* Office Locations - 2 Columns */
+.office-locations {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* TWO COLUMNS */
+    gap: 20px 25px; /* row gap, column gap */
+}
+
+.office-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.office-item strong {
+    display: block;
+    color: var(--brand-secondary);
+    font-size: 0.88rem;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.office-item p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    opacity: 0.7;
+    margin: 0;
+}
+
+.office-item a {
+    display: inline-block;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    margin-top: 2px;
+}
+
+.office-item a:hover {
+    opacity: 1;
+    color: var(--brand-secondary);
+}
+
+/* Email links styling */
+.office-item a[href^="mailto"] {
+    font-size: 0.78rem;
+    opacity: 0.75;
+}
+
+.office-item a[href^="mailto"]:hover {
+    text-decoration: underline;
+}
+
+/* Ghana office spans both columns since it's alone in row 2 */
+.office-item:nth-child(3) {
+    grid-column: 1; /* Keep it in first column */
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    
+    .offices-col {
+        grid-column: 1 / -1; /* Span full width */
+    }
+    
+    .office-locations {
+        grid-template-columns: repeat(3, 1fr); /* All 3 in one row on tablet */
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer {
+        padding: 60px 0 40px 0;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    
+    .footer-grid {
+        margin-bottom: 50px;
+    }
+    
+    .office-locations {
+        grid-template-columns: 1fr; /* Stack vertically on mobile */
+        gap: 18px;
+    }
 }
 
 /* RESPONSIVE */
