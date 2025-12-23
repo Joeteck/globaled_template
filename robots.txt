@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /oldHtml/
+
+
+Sitemap: https://joeteck.github.io/globaled_template/sitemap.xml
