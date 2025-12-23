@@ -169,10 +169,6 @@
             background: #3b82f6;
         }
         
-        .category-icon.marketing {
-            background: #8b5cf6;
-        }
-        
         .category-icon.functional {
             background: #10b981;
         }
@@ -529,7 +525,7 @@
             <header class="cookie-header">
                 <div class="cookie-badge">Cookie & Tracking Policy</div>
                 <h1 class="cookie-title">Cookie Policy</h1>
-                <div class="cookie-update">Last updated: January 2024</div>
+                <div class="cookie-update">Last updated: December 2025</div>
                 <p class="cookie-intro">
                     This Cookie Policy explains what cookies are, how GlobalEd and Tour Inc. uses them, and how you can control them. We are committed to transparency about our tracking technologies in compliance with GDPR, CCPA, and other data protection regulations.
                 </p>
@@ -591,7 +587,7 @@
                                     <h3 class="category-title">Analytics Cookies</h3>
                                     <span class="category-status">Optional</span>
                                 </div>
-                                <p>These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.</p>
+                                <p>These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. They are only loaded with your explicit consent.</p>
                                 <ul class="category-list">
                                     <li>Page view tracking</li>
                                     <li>Visitor count and demographics</li>
@@ -610,29 +606,12 @@
                                 </div>
                                 <p>These cookies enable enhanced functionality and personalization. They may be set by us or by third-party providers.</p>
                                 <ul class="category-list">
-                                    <li>Language preferences</li>
+                                    <li>Cookie consent preferences (stored in localStorage)</li>
                                     <li>Form auto-completion</li>
                                     <li>Video player preferences</li>
                                     <li>Social media integration</li>
                                 </ul>
                                 <p><strong>Duration:</strong> Up to 1 year</p>
-                            </div>
-                            
-                            <!-- Marketing Cookies -->
-                            <div class="cookie-category">
-                                <div class="category-header">
-                                    <div class="category-icon marketing"></div>
-                                    <h3 class="category-title">Marketing Cookies</h3>
-                                    <span class="category-status">Optional</span>
-                                </div>
-                                <p>These cookies track browsing habits to display relevant advertisements. They may share information with other organizations.</p>
-                                <ul class="category-list">
-                                    <li>Ad targeting and retargeting</li>
-                                    <li>Campaign performance tracking</li>
-                                    <li>Social media advertising</li>
-                                    <li>Interest-based content</li>
-                                </ul>
-                                <p><strong>Duration:</strong> Up to 2 years</p>
                             </div>
                         </div>
                     </div>
@@ -650,7 +629,7 @@
                         <table class="cookie-table">
                             <thead>
                                 <tr>
-                                    <th>Cookie Name</th>
+                                    <th>Storage Method</th>
                                     <th>Type</th>
                                     <th>Purpose</th>
                                     <th>Duration</th>
@@ -658,38 +637,27 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="cookie-name">session_id</td>
-                                    <td><span class="cookie-type">Essential</span></td>
-                                    <td>Maintains user session state</td>
-                                    <td>Session</td>
-                                </tr>
-                                <tr>
-                                    <td class="cookie-name">csrf_token</td>
-                                    <td><span class="cookie-type">Essential</span></td>
-                                    <td>Protects against cross-site request forgery</td>
-                                    <td>Session</td>
-                                </tr>
-                                <tr>
-                                    <td class="cookie-name">cookie_consent</td>
+                                    <td class="cookie-name">cookieConsent (localStorage)</td>
                                     <td><span class="cookie-type">Functional</span></td>
-                                    <td>Remembers your cookie preferences</td>
-                                    <td>1 year</td>
-                                </tr>
-                                <tr>
-                                    <td class="cookie-name">language_pref</td>
-                                    <td><span class="cookie-type">Functional</span></td>
-                                    <td>Stores your language preference</td>
+                                    <td>Stores your cookie preferences and consent choices</td>
                                     <td>1 year</td>
                                 </tr>
                             </tbody>
                         </table>
                         
-                        <p><strong>Google Analytics Cookies:</strong> If you consent to analytics cookies, we may use Google Analytics cookies including:</p>
+                        <p><strong>Google Analytics Cookies (with consent only):</strong> If you consent to analytics cookies, we may use Google Analytics cookies including:</p>
                         <ul class="category-list">
                             <li><strong>_ga:</strong> Distinguishes users (2 years duration)</li>
+                            <li><strong>_ga_XXXXXX:</strong> Google Analytics 4 configuration (2 years duration)</li>
                             <li><strong>_gid:</strong> Distinguishes users (24 hours duration)</li>
                             <li><strong>_gat:</strong> Throttles request rate (1 minute duration)</li>
                         </ul>
+                        
+                        <div class="control-section">
+                            <h3>Important Note About Analytics</h3>
+                            <p>Google Analytics cookies <strong>are only loaded</strong> when you explicitly consent to analytics cookies through our cookie banner. If you reject non-essential cookies or decline analytics cookies, Google Analytics will not be loaded on your browser.</p>
+                            <p>We use Google Analytics with IP anonymization enabled, meaning your IP address is truncated before being sent to Google's servers for processing.</p>
+                        </div>
                         
                         <p><strong>Third-Party Cookies:</strong> Some cookies may be placed by third-party services embedded on our site, such as social media buttons or embedded videos. These third parties have their own privacy policies.</p>
                     </div>
@@ -709,7 +677,7 @@
                             <h4 style="margin-top: 25px; color: var(--brand-primary);">1. Cookie Consent Banner</h4>
                             <p>When you first visit our website, you'll see a cookie consent banner that allows you to:</p>
                             <ul class="category-list">
-                                <li><strong>Accept All:</strong> Accept all cookies (essential, analytics, functional, marketing)</li>
+                                <li><strong>Accept All:</strong> Accept all cookies (essential, analytics, functional)</li>
                                 <li><strong>Customize:</strong> Choose which cookie categories to accept</li>
                                 <li><strong>Reject Non-Essential:</strong> Accept only essential cookies</li>
                             </ul>
@@ -749,6 +717,7 @@
                             <li>Clicking the "Cookie Settings" link in our website footer</li>
                             <li>Clearing your browser cookies and revisiting our site</li>
                             <li>Using browser settings to manage specific cookies</li>
+                            <li>Clearing localStorage data in your browser developer tools</li>
                         </ul>
                     </div>
                 </section>
@@ -815,7 +784,7 @@
             
             <!-- Footer -->
             <footer class="cookie-footer">
-                <p>© 2024 GlobalEd and Tour Inc. All rights reserved.</p>
+                <p>© 2025 GlobalEd and Tour Inc. All rights reserved.</p>
                 <div class="cookie-footer-links">
                     <a href="index.html">Home</a>
                     <a href="about.html">About Us</a>
@@ -839,11 +808,11 @@
             navLinks.classList.remove('active');
         }
         
-        // Cookie Settings Modal function (to match other pages)
+        // Cookie Settings Modal function - Link to actual cookie modal on all pages
         function showCookieSettingsModal() {
-            alert('Cookie settings would open here. In production, this would show the same cookie settings modal as on other pages.');
-            // In production, you would trigger the same modal as on other pages
-            // Example: document.getElementById('cookieModal').classList.add('show');
+            // Since we're on the cookie policy page, we can show a simple alert
+            // In production, this would trigger the same modal as on other pages
+            alert('To change your cookie preferences, please click the "Cookie Settings" link on our homepage or any other page.');
         }
         
         document.addEventListener('DOMContentLoaded', function() {

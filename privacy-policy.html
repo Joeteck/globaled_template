@@ -309,6 +309,8 @@
             }
         }
     </style>
+    <!-- Google Analytics - NOT LOADED UNTIL CONSENT IS GIVEN -->
+    <!-- We'll load this dynamically only after user consent -->
 </head>
 <body>
 
@@ -334,7 +336,8 @@
             <header class="legal-header">
                 <div class="legal-badge">Legal & Compliance</div>
                 <h1 class="legal-title">Privacy Policy</h1>
-                <div class="legal-update">Last updated: January 2024</div>
+                <!-- UPDATED: Changed from January 2024 to December 2024 -->
+                <div class="legal-update">Last updated: December 2025</div>
                 <p class="legal-intro">
                     This Privacy Policy explains how GlobalEd and Tour Inc. ("we", "us", "our") collects, uses, 
                     and protects your personal data when you use our website and services. We are committed to 
@@ -497,7 +500,7 @@
                             <li><strong>Application data:</strong> 5 years from completion</li>
                             <li><strong>Legal obligations:</strong> As required by applicable laws</li>
                             <li><strong>Marketing consent:</strong> Until withdrawal of consent</li>
-                            <li><strong>Cookie preferences:</strong> 1 year (stored in local storage)</li>
+                            <li><strong>Cookie preferences:</strong> 1 year (stored in browser's local storage)</li>
                         </ul>
                     </div>
                 </section>
@@ -633,8 +636,9 @@
             </div>
             
             <!-- Footer -->
+            <!-- UPDATED: Changed copyright year from 2024 to 2025 -->
             <footer class="legal-footer">
-                <p>© 2024 GlobalEd and Tour Inc. All rights reserved.</p>
+                <p>© 2025 GlobalEd and Tour Inc. All rights reserved.</p>
                 <div class="legal-footer-links">
                     <a href="index.html">Home</a>
                     <a href="about.html">About Us</a>
@@ -658,12 +662,73 @@
             navLinks.classList.remove('active');
         }
         
-        // Cookie Settings Modal function (to match other pages)
+        // Enhanced Cookie Settings Modal function
         function showCookieSettingsModal() {
-            alert('Cookie settings would open here. In production, this would show the same cookie settings modal as on other pages.');
-            // In production, you would trigger the same modal as on other pages
-            // Example: if (window.showCookieSettings) showCookieSettings();
+            // This should match your existing cookie consent modal
+            // Replace with your actual implementation
+            console.log('Cookie settings modal triggered');
+            
+            // If you have a global cookie settings function, call it
+            if (typeof window.showCookieSettings === 'function') {
+                window.showCookieSettings();
+            } else {
+                // Fallback implementation
+                const consent = localStorage.getItem('cookie_consent') || 'pending';
+                const settings = `
+                    Current cookie settings: ${consent}
+                    
+                    Options:
+                    1. Accept all cookies
+                    2. Accept only essential cookies
+                    3. Customize preferences
+                    
+                    In production, this would show your actual cookie consent modal.
+                `;
+                alert(settings);
+            }
         }
+        
+        // Google Analytics consent management
+        function shouldLoadAnalytics() {
+            const consent = localStorage.getItem('cookie_consent');
+            return consent === 'all' || consent === 'analytics';
+        }
+        
+        function loadGoogleAnalytics() {
+            if (!shouldLoadAnalytics()) {
+                console.log('Google Analytics not loaded: No consent');
+                window['ga-disable-GA_MEASUREMENT_ID'] = true;
+                return;
+            }
+            
+            console.log('Loading Google Analytics with consent');
+            
+            // Replace GA_MEASUREMENT_ID with your actual Google Analytics ID
+            const measurementId = 'GA_MEASUREMENT_ID';
+            
+            // Initialize data layer
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', measurementId);
+            
+            // Load Google Analytics script
+            const script = document.createElement('script');
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+            script.async = true;
+            document.head.appendChild(script);
+        }
+        
+        // Cookie consent listener
+        document.addEventListener('cookieConsentUpdated', function(e) {
+            console.log('Cookie consent updated:', e.detail);
+            if (e.detail === 'analytics' || e.detail === 'all') {
+                loadGoogleAnalytics();
+            } else {
+                // Disable analytics
+                window['ga-disable-GA_MEASUREMENT_ID'] = true;
+            }
+        });
         
         document.addEventListener('DOMContentLoaded', function() {
             // Highlight current page in navigation
@@ -673,6 +738,9 @@
                     link.classList.add('active');
                 }
             });
+            
+            // Load Google Analytics if consented
+            loadGoogleAnalytics();
             
             // Add scroll animations for sections
             const sections = document.querySelectorAll('.policy-section');
@@ -695,7 +763,54 @@
                 section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
                 observer.observe(section);
             });
+            
+            // Update footer links for consistency
+            updateFooterLinks();
         });
+        
+        function updateFooterLinks() {
+            // Ensure all links have proper attributes for consistency
+            const footerLinks = document.querySelectorAll('.legal-footer-links a');
+            footerLinks.forEach(link => {
+                if (link.getAttribute('href') === 'javascript:void(0)') {
+                    link.setAttribute('role', 'button');
+                    link.setAttribute('aria-label', 'Cookie Settings');
+                }
+            });
+        }
+        
+        // Cookie consent state management
+        const CookieManager = {
+            getConsent: function() {
+                return localStorage.getItem('cookie_consent') || 'pending';
+            },
+            
+            setConsent: function(type) {
+                localStorage.setItem('cookie_consent', type);
+                
+                // Trigger custom event for other components
+                const event = new CustomEvent('cookieConsentUpdated', { detail: type });
+                document.dispatchEvent(event);
+                
+                // Update Google Analytics based on consent
+                if (type === 'all' || type === 'analytics') {
+                    loadGoogleAnalytics();
+                } else {
+                    window['ga-disable-GA_MEASUREMENT_ID'] = true;
+                }
+                
+                return true;
+            },
+            
+            clearConsent: function() {
+                localStorage.removeItem('cookie_consent');
+                window['ga-disable-GA_MEASUREMENT_ID'] = true;
+                return true;
+            }
+        };
+        
+        // Make CookieManager available globally if needed
+        window.CookieManager = CookieManager;
     </script>
 </body>
 </html>

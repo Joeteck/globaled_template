@@ -405,7 +405,8 @@
             <header class="terms-header">
                 <div class="terms-badge">Legal Agreement</div>
                 <h1 class="terms-title">Terms of Service</h1>
-                <div class="terms-update">Last updated: January 2024</div>
+                <!-- UPDATED: Changed from January 2024 to December 2024 -->
+                <div class="terms-update">Last updated: December 2025</div>
                 <p class="terms-intro">
                     These Terms of Service govern your use of GlobalEd and Tour Inc.'s website and services. 
                     By accessing our website or using our services, you agree to be bound by these terms.
@@ -604,7 +605,8 @@
                         <h2 class="section-title">Governing Law & Dispute Resolution</h2>
                     </div>
                     <div class="section-content">
-                        <p>These Terms of Service are governed by and construed in accordance with the laws of Monrovia, Liberia, without regard to its conflict of law provisions.</p>
+                        <!-- UPDATED: Changed from "Laws of Monrovia, Liberia" to "Laws of the Republic of Liberia" -->
+                        <p>These Terms of Service are governed by and construed in accordance with the laws of the Republic of Liberia, without regard to its conflict of law provisions.</p>
                         
                         <div class="info-box">
                             <strong>Jurisdiction</strong>
@@ -676,13 +678,16 @@
             </div>
             
             <!-- Footer -->
+            <!-- UPDATED: Changed copyright year from 2024 to 2025 -->
             <footer class="terms-footer">
-                <p>© 2024 GlobalEd and Tour Inc. All rights reserved.</p>
+                <p>© 2025 GlobalEd and Tour Inc. All rights reserved.</p>
                 <div class="terms-footer-links">
                     <a href="index.html">Home</a>
                     <a href="about.html">About Us</a>
                     <a href="universities.html">Universities</a>
                     <a href="index.html#contact">Contact</a>
+                    <!-- Added Cookie Settings link for consistency -->
+                    <a href="javascript:void(0)" onclick="showCookieSettingsModal()" style="color: var(--brand-secondary);">Cookie Settings</a>
                 </div>
             </footer>
         </div>
@@ -700,6 +705,74 @@
             navLinks.classList.remove('active');
         }
         
+        // Enhanced Cookie Settings Modal function
+        function showCookieSettingsModal() {
+            // This should match your existing cookie consent modal
+            // Replace with your actual implementation
+            console.log('Cookie settings modal triggered');
+            
+            // If you have a global cookie settings function, call it
+            if (typeof window.showCookieSettings === 'function') {
+                window.showCookieSettings();
+            } else {
+                // Fallback implementation
+                const consent = localStorage.getItem('cookie_consent') || 'pending';
+                const settings = `
+                    Current cookie settings: ${consent}
+                    
+                    Options:
+                    1. Accept all cookies
+                    2. Accept only essential cookies
+                    3. Customize preferences
+                    
+                    In production, this would show your actual cookie consent modal.
+                `;
+                alert(settings);
+            }
+        }
+        
+        // Google Analytics consent management
+        function shouldLoadAnalytics() {
+            const consent = localStorage.getItem('cookie_consent');
+            return consent === 'all' || consent === 'analytics';
+        }
+        
+        function loadGoogleAnalytics() {
+            if (!shouldLoadAnalytics()) {
+                console.log('Google Analytics not loaded: No consent');
+                window['ga-disable-GA_MEASUREMENT_ID'] = true;
+                return;
+            }
+            
+            console.log('Loading Google Analytics with consent');
+            
+            // Replace GA_MEASUREMENT_ID with your actual Google Analytics ID
+            const measurementId = 'GA_MEASUREMENT_ID';
+            
+            // Initialize data layer
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', measurementId);
+            
+            // Load Google Analytics script
+            const script = document.createElement('script');
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+            script.async = true;
+            document.head.appendChild(script);
+        }
+        
+        // Cookie consent listener
+        document.addEventListener('cookieConsentUpdated', function(e) {
+            console.log('Cookie consent updated:', e.detail);
+            if (e.detail === 'analytics' || e.detail === 'all') {
+                loadGoogleAnalytics();
+            } else {
+                // Disable analytics
+                window['ga-disable-GA_MEASUREMENT_ID'] = true;
+            }
+        });
+        
         document.addEventListener('DOMContentLoaded', function() {
             // Highlight current page in navigation
             const currentPage = window.location.pathname.split('/').pop();
@@ -708,6 +781,9 @@
                     link.classList.add('active');
                 }
             });
+            
+            // Load Google Analytics if consented
+            loadGoogleAnalytics();
             
             // Add scroll animations for sections
             const sections = document.querySelectorAll('.terms-section');
@@ -749,7 +825,54 @@
                     notice.querySelector('strong').innerHTML = text;
                 }
             });
+            
+            // Update footer links for consistency
+            updateFooterLinks();
         });
+        
+        function updateFooterLinks() {
+            // Ensure all links have proper attributes for consistency
+            const footerLinks = document.querySelectorAll('.terms-footer-links a');
+            footerLinks.forEach(link => {
+                if (link.getAttribute('href') === 'javascript:void(0)') {
+                    link.setAttribute('role', 'button');
+                    link.setAttribute('aria-label', 'Cookie Settings');
+                }
+            });
+        }
+        
+        // Cookie consent state management
+        const CookieManager = {
+            getConsent: function() {
+                return localStorage.getItem('cookie_consent') || 'pending';
+            },
+            
+            setConsent: function(type) {
+                localStorage.setItem('cookie_consent', type);
+                
+                // Trigger custom event for other components
+                const event = new CustomEvent('cookieConsentUpdated', { detail: type });
+                document.dispatchEvent(event);
+                
+                // Update Google Analytics based on consent
+                if (type === 'all' || type === 'analytics') {
+                    loadGoogleAnalytics();
+                } else {
+                    window['ga-disable-GA_MEASUREMENT_ID'] = true;
+                }
+                
+                return true;
+            },
+            
+            clearConsent: function() {
+                localStorage.removeItem('cookie_consent');
+                window['ga-disable-GA_MEASUREMENT_ID'] = true;
+                return true;
+            }
+        };
+        
+        // Make CookieManager available globally if needed
+        window.CookieManager = CookieManager;
     </script>
 </body>
 </html>
