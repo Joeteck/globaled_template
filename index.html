@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalEd & Tour | Premium International Education</title>
+    <title>GlobalEd and Tour Inc. | Premium International Education</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/styles.css">
     
-    <!-- Cookie Consent Banner Styling -->
+    <!-- GDPR Cookie Consent Styling -->
     <style>
         .cookie-banner {
             position: fixed;
@@ -17,11 +17,12 @@
             right: 0;
             background: rgba(26, 77, 94, 0.98);
             color: white;
-            padding: 20px;
+            padding: 25px;
             z-index: 9999;
             display: none;
             backdrop-filter: blur(10px);
-            border-top: 2px solid var(--brand-secondary);
+            border-top: 3px solid var(--brand-secondary);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
         }
         .cookie-banner.show {
             display: block;
@@ -29,15 +30,17 @@
         .cookie-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
+        }
+        .cookie-header {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--brand-secondary);
         }
         .cookie-text {
-            flex: 1;
             font-size: 0.9rem;
             line-height: 1.6;
+            margin-bottom: 20px;
         }
         .cookie-text a {
             color: var(--brand-secondary);
@@ -46,54 +49,258 @@
         .cookie-buttons {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
         .cookie-btn {
-            padding: 10px 24px;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .cookie-accept-all {
+            background: var(--brand-secondary);
+            color: var(--brand-primary);
+        }
+        .cookie-accept-all:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+        .cookie-reject {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+        .cookie-reject:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .cookie-customize {
+            background: transparent;
+            color: var(--brand-secondary);
+            border: 2px solid var(--brand-secondary);
+        }
+        .cookie-customize:hover {
+            background: rgba(227, 154, 76, 0.1);
+        }
+        
+        /* Cookie Settings Modal */
+        .cookie-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            z-index: 10001;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .cookie-modal.show {
+            display: block;
+        }
+        .cookie-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+        }
+        .cookie-overlay.show {
+            display: block;
+        }
+        .modal-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            margin-bottom: 20px;
+        }
+        .cookie-category {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .cookie-category:last-child {
+            border-bottom: none;
+        }
+        .cookie-category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .cookie-category h3 {
+            font-size: 1.1rem;
+            color: var(--brand-primary);
+            margin: 0;
+        }
+        .cookie-toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+        .cookie-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 26px;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .toggle-slider {
+            background-color: var(--brand-secondary);
+        }
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+        input:disabled + .toggle-slider {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .cookie-category p {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin: 0;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .modal-btn {
+            flex: 1;
+            padding: 12px 20px;
             border: none;
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .cookie-accept {
-            background: var(--brand-secondary);
+        .modal-save {
+            background: var(--brand-primary);
+            color: white;
+        }
+        .modal-save:hover {
+            background: var(--brand-primary-dark);
+        }
+        .modal-cancel {
+            background: transparent;
+            border: 2px solid var(--brand-primary);
             color: var(--brand-primary);
         }
-        .cookie-accept:hover {
-            transform: scale(1.05);
-        }
-        .cookie-decline {
-            background: transparent;
-            color: white;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
+        
         @media (max-width: 768px) {
-            .cookie-content {
+            .cookie-buttons {
                 flex-direction: column;
+            }
+            .cookie-btn {
+                width: 100%;
                 text-align: center;
+            }
+            .cookie-modal {
+                padding: 25px;
+            }
+            .modal-buttons {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Cookie Consent Banner -->
+    <!-- GDPR Cookie Consent Banner -->
     <div class="cookie-banner" id="cookieBanner">
         <div class="cookie-content">
+            <div class="cookie-header">🍪 Cookie Preferences</div>
             <div class="cookie-text">
-                We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies. 
+                We use cookies to enhance your browsing experience and analyze our traffic. 
+                You can choose which cookies to accept. Essential cookies are required for the site to function.
                 <a href="privacy-policy.html">Privacy Policy</a> | <a href="cookie-policy.html">Cookie Policy</a>
             </div>
             <div class="cookie-buttons">
-                <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
-                <button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
+                <button class="cookie-btn cookie-accept-all" onclick="acceptAllCookies()">Accept All</button>
+                <button class="cookie-btn cookie-reject" onclick="rejectNonEssential()">Reject Non-Essential</button>
+                <button class="cookie-btn cookie-customize" onclick="showCookieSettings()">Customize</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div class="cookie-overlay" id="cookieOverlay" onclick="closeCookieSettings()"></div>
+    <div class="cookie-modal" id="cookieModal">
+        <div class="modal-header">Cookie Preferences</div>
+        
+        <div class="cookie-category">
+            <div class="cookie-category-header">
+                <h3>Essential Cookies</h3>
+                <label class="cookie-toggle">
+                    <input type="checkbox" checked disabled>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p>Required for the website to function. Cannot be disabled.</p>
+        </div>
+        
+        <div class="cookie-category">
+            <div class="cookie-category-header">
+                <h3>Analytics Cookies</h3>
+                <label class="cookie-toggle">
+                    <input type="checkbox" id="analyticsCookies">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p>Help us understand how visitors interact with our website by collecting and reporting information anonymously.</p>
+        </div>
+        
+        <div class="cookie-category">
+            <div class="cookie-category-header">
+                <h3>Marketing Cookies</h3>
+                <label class="cookie-toggle">
+                    <input type="checkbox" id="marketingCookies">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p>Used to track visitors across websites to display relevant advertisements.</p>
+        </div>
+        
+        <div class="modal-buttons">
+            <button class="modal-btn modal-save" onclick="saveCustomPreferences()">Save Preferences</button>
+            <button class="modal-btn modal-cancel" onclick="closeCookieSettings()">Cancel</button>
         </div>
     </div>
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html"><img src="assets/icons/globaled.png" alt="Globaled" class="logo"/></a>
+            <a href="index.html"><img src="assets/icons/globaled.png" alt="GlobalEd and Tour Inc." class="logo"/></a>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -117,12 +324,12 @@
                     <span>Done Properly.</span>
                 </h1>
                 <p class="hero-description">
-                    GlobalEd & Tour partners with leading universities across Europe,
+                    GlobalEd and Tour Inc. partners with leading universities across Europe,
                     Canada, and the United States to deliver structured admissions,
                     visa guidance, and student relocation — without guesswork.
                 </p>
                 <div class="hero-actions">
-                    <a href=" #contact" class="hero-btn primary">Begin Consultation</a>
+                    <a href="#contact" class="hero-btn primary">Begin Consultation</a>
                     <a href="universities.html" class="hero-btn outline">View Partner Universities</a>
                 </div>
                 <div class="hero-metrics">
@@ -147,26 +354,7 @@
         </div>
     </section>
 
-    <section class="stats">
-        <div class="stats-grid">
-            <div class="stat-box">
-                <span class="stat-number" data-target="250">0</span><span class="stat-plus">+</span>
-                <p>Students Placed</p>
-            </div>
-            <div class="stat-box">
-                <span class="stat-number" data-target="10">0</span><span class="stat-plus">+</span>
-                <p>Partner Schools</p>
-            </div>
-            <div class="stat-box highlight-box">
-                <span class="stat-number" data-target="95">0</span><span class="stat-plus-primary">%</span>
-                <p>Visa Success</p>
-            </div>
-            <div class="stat-box">
-                <span class="stat-number" data-target="100">0</span><span class="stat-plus">%</span>
-                <p>Global Support</p>
-            </div>
-        </div>
-    </section>
+    <!-- REMOVED STATS SECTION - Contains placeholder numbers -->
 
     <section class="features" id="about">
         <div class="features-grid">
@@ -182,7 +370,7 @@
             </div>
             <div class="feature-card">
                 <h3>Global Network</h3>
-                <p>Top universities in 4+ major destinations with verified partnerships.</p>
+                <p>Top universities in major destinations with verified partnerships.</p>
             </div>
             <div class="feature-card secondary">
                 <h3>End-to-End</h3>
@@ -202,10 +390,8 @@
             <p>Explore world-class education in premier countries</p>
         </div>
 
-        <!-- Swiper Container -->
         <div class="swiper countrySwiper">
             <div class="swiper-wrapper">
-                <!-- Slide 1 -->
                 <div class="swiper-slide">
                     <img src="https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800&h=800&fit=crop" alt="Canada">
                     <div class="slide-content">
@@ -213,7 +399,6 @@
                     </div>
                 </div>
                 
-                <!-- Slide 2 -->
                 <div class="swiper-slide">
                     <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=800&fit=crop" alt="UK">
                     <div class="slide-content">
@@ -221,7 +406,6 @@
                     </div>
                 </div>
                 
-                <!-- Slide 3 -->
                 <div class="swiper-slide">
                     <img src="assets/images/usa.jpg" alt="USA">
                     <div class="slide-content">
@@ -229,7 +413,6 @@
                     </div>
                 </div>
                 
-                <!-- Slide 4 -->
                 <div class="swiper-slide">
                     <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&h=800&fit=crop" alt="Australia">
                     <div class="slide-content">
@@ -237,7 +420,6 @@
                     </div>
                 </div>
                 
-                <!-- Slide 5 -->
                 <div class="swiper-slide">
                     <img src="assets/images/germany.jpg" alt="Germany">
                     <div class="slide-content">
@@ -246,11 +428,8 @@
                 </div>
             </div>
             
-            <!-- Navigation Arrows -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
-            
-            <!-- Pagination Dots -->
             <div class="swiper-pagination"></div>
         </div>
     </section>
@@ -275,7 +454,7 @@
         </div>
     </section>
 
-    <!-- CTA SECTION - Redesigned -->
+    <!-- CTA SECTION -->
     <section class="cta-section" id="contact">
         <div class="cta-background-wrap">
             <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1400" alt="Student Life" class="halfway-img">
@@ -315,7 +494,7 @@
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; font-weight: 400; text-transform: none;">
                                 <input type="checkbox" name="consent" required style="margin-top: 3px;">
-                                <span>I agree to receive communications from GlobalEd & Tour and have read the <a href="privacy-policy.html" style="color: var(--brand-secondary);">Privacy Policy</a></span>
+                                <span>I agree to receive communications from GlobalEd and Tour Inc. and have read the <a href="privacy-policy.html" style="color: var(--brand-secondary);">Privacy Policy</a></span>
                             </label>
                         </div>
                         
@@ -337,7 +516,7 @@
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-column brand-col animate-footer">
-                    <a href="index.html"><img src="assets/icons/globaled.png" alt="Globaled" class="logo"/></a>
+                    <a href="index.html"><img src="assets/icons/globaled.png" alt="GlobalEd and Tour Inc." class="logo"/></a>
                     <p class="footer-bio">
                         Your trusted bridge to international excellence. We simplify the journey to world-class education with expert guidance and a global network.
                     </p>
@@ -357,7 +536,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="universities.html">Universities</a></li>
-                        <li><a href=" #contact">Get Started</a></li>
+                        <li><a href="#contact">Get Started</a></li>
                     </ul>
                 </div>
 
@@ -387,12 +566,13 @@
 
             <div class="footer-bottom">
                 <div class="footer-legal">
-                    <p>&copy; 2024 GlobalEd & Tour. All rights reserved.</p>
+                    <p>&copy; 2024 GlobalEd and Tour Inc. All rights reserved.</p>
                 </div>
                 <div class="footer-secondary-links">
                     <a href="privacy-policy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
                     <a href="cookie-policy.html">Cookie Policy</a>
+                    <a href="javascript:void(0)" onclick="showCookieSettings()">Cookie Settings</a>
                 </div>
             </div>
         </div>
@@ -403,25 +583,99 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/script.js"></script>
     
-    <!-- Cookie Consent Script -->
+    <!-- GDPR Cookie Consent Script -->
     <script>
-        // Cookie Consent Management
+        // GDPR-Compliant Cookie Management
+        
         function showCookieBanner() {
             const consent = localStorage.getItem('cookieConsent');
             if (!consent) {
                 document.getElementById('cookieBanner').classList.add('show');
+            } else {
+                // Load analytics if previously consented
+                loadConsentedServices();
             }
         }
         
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'accepted');
+        function acceptAllCookies() {
+            const consent = {
+                essential: true,
+                analytics: true,
+                marketing: true,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('cookieConsent', JSON.stringify(consent));
             document.getElementById('cookieBanner').classList.remove('show');
-            // Initialize analytics or tracking here if needed
+            loadConsentedServices();
         }
         
-        function declineCookies() {
-            localStorage.setItem('cookieConsent', 'declined');
+        function rejectNonEssential() {
+            const consent = {
+                essential: true,
+                analytics: false,
+                marketing: false,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('cookieConsent', JSON.stringify(consent));
             document.getElementById('cookieBanner').classList.remove('show');
+        }
+        
+        function showCookieSettings() {
+            document.getElementById('cookieModal').classList.add('show');
+            document.getElementById('cookieOverlay').classList.add('show');
+            
+            // Load current preferences
+            const consent = JSON.parse(localStorage.getItem('cookieConsent') || '{"analytics":false,"marketing":false}');
+            document.getElementById('analyticsCookies').checked = consent.analytics || false;
+            document.getElementById('marketingCookies').checked = consent.marketing || false;
+        }
+        
+        function closeCookieSettings() {
+            document.getElementById('cookieModal').classList.remove('show');
+            document.getElementById('cookieOverlay').classList.remove('show');
+        }
+        
+        function saveCustomPreferences() {
+            const consent = {
+                essential: true,
+                analytics: document.getElementById('analyticsCookies').checked,
+                marketing: document.getElementById('marketingCookies').checked,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('cookieConsent', JSON.stringify(consent));
+            closeCookieSettings();
+            document.getElementById('cookieBanner').classList.remove('show');
+            loadConsentedServices();
+        }
+        
+        function loadConsentedServices() {
+            const consent = JSON.parse(localStorage.getItem('cookieConsent') || '{}');
+            
+            // Load Google Analytics ONLY if analytics consent given
+            if (consent.analytics && typeof gtag === 'undefined') {
+                // Replace G-XXXXXXXXXX with your actual GA tracking ID
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+                document.head.appendChild(script);
+                
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', 'G-XXXXXXXXXX', {
+                    'anonymize_ip': true,
+                    'cookie_flags': 'SameSite=None;Secure'
+                });
+                
+                console.log('Google Analytics loaded with user consent');
+            }
+            
+            // Load marketing pixels ONLY if marketing consent given
+            if (consent.marketing) {
+                // Add Facebook Pixel, LinkedIn Insight, etc. here
+                console.log('Marketing services loaded with user consent');
+            }
         }
         
         // Show banner on page load

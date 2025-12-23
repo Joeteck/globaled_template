@@ -1,8 +1,8 @@
             
             <!-- Card 6 -->
-            <a href="https://dickinsonlaw.psu.edu/" target="_blank" rel="noopener" class="modern-card" data-country="usa">
+            <a href="https://cdn.apphero.io/pdf/a5eTf000000FzZRIA0.pdf" target="_blank" rel="noopener" class="modern-card" data-country="usa">
                 <div class="card-image">
-                    <img src="assets/icons/penn-state-logo.png" alt="Penn State Logo" class="university-logo">
+                    <img src="assets/icons/PSU.jpg" alt="Penn State Logo" class="university-logo">
                     <div class="country-flag">🇺🇸</div>
                 </div>
                 <div class="card-content">

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partner Universities | GlobalEd & Tour | Premium International Education</title>
+    <title>Partner Universities | GlobalEd and Tour Inc. | Premium International Education</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/styles.css">
     
-    <!-- Cookie Consent Banner Styling -->
+    <!-- GDPR Cookie Consent Styling -->
     <style>
         .cookie-banner {
             position: fixed;
@@ -17,11 +17,12 @@
             right: 0;
             background: rgba(26, 77, 94, 0.98);
             color: white;
-            padding: 20px;
+            padding: 25px;
             z-index: 9999;
             display: none;
             backdrop-filter: blur(10px);
-            border-top: 2px solid var(--brand-secondary);
+            border-top: 3px solid var(--brand-secondary);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
         }
         .cookie-banner.show {
             display: block;
@@ -29,15 +30,17 @@
         .cookie-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
+        }
+        .cookie-header {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--brand-secondary);
         }
         .cookie-text {
-            flex: 1;
             font-size: 0.9rem;
             line-height: 1.6;
+            margin-bottom: 20px;
         }
         .cookie-text a {
             color: var(--brand-secondary);
@@ -46,32 +49,173 @@
         .cookie-buttons {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
         .cookie-btn {
-            padding: 10px 24px;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .cookie-accept-all {
+            background: var(--brand-secondary);
+            color: var(--brand-primary);
+        }
+        .cookie-accept-all:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+        .cookie-reject {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+        .cookie-reject:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .cookie-customize {
+            background: transparent;
+            color: var(--brand-secondary);
+            border: 2px solid var(--brand-secondary);
+        }
+        .cookie-customize:hover {
+            background: rgba(227, 154, 76, 0.1);
+        }
+        
+        /* Cookie Settings Modal */
+        .cookie-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            z-index: 10001;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .cookie-modal.show {
+            display: block;
+        }
+        .cookie-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+        }
+        .cookie-overlay.show {
+            display: block;
+        }
+        .modal-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            margin-bottom: 20px;
+        }
+        .cookie-category {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .cookie-category:last-child {
+            border-bottom: none;
+        }
+        .cookie-category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .cookie-category h3 {
+            font-size: 1.1rem;
+            color: var(--brand-primary);
+            margin: 0;
+        }
+        .cookie-toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+        .cookie-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 26px;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .toggle-slider {
+            background-color: var(--brand-secondary);
+        }
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+        input:disabled + .toggle-slider {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .cookie-category p {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin: 0;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .modal-btn {
+            flex: 1;
+            padding: 12px 20px;
             border: none;
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .cookie-accept {
-            background: var(--brand-secondary);
-            color: var(--brand-primary);
-        }
-        .cookie-accept:hover {
-            transform: scale(1.05);
-        }
-        .cookie-decline {
-            background: transparent;
+        .modal-save {
+            background: var(--brand-primary);
             color: white;
-            border: 1px solid rgba(255,255,255,0.3);
         }
-        @media (max-width: 768px) {
-            .cookie-content {
-                flex-direction: column;
-                text-align: center;
-            }
+        .modal-save:hover {
+            background: var(--brand-primary-dark);
+        }
+        .modal-cancel {
+            background: transparent;
+            border: 2px solid var(--brand-primary);
+            color: var(--brand-primary);
         }
         
         /* Universities Page Styles */
@@ -87,6 +231,7 @@
             color: var(--white);
             position: relative;
             overflow: hidden;
+            margin-top: 70px;
         }
         
         .hero-pattern {
@@ -130,10 +275,10 @@
         
         .hero-stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: var(--grid-gap);
             margin-top: 60px;
-            max-width: 800px;
+            max-width: 600px;
         }
         
         .hero-stat-box {
@@ -391,6 +536,20 @@
             .hero-stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .cookie-buttons {
+                flex-direction: column;
+            }
+            .cookie-btn {
+                width: 100%;
+                text-align: center;
+            }
+            .cookie-modal {
+                padding: 25px;
+            }
+            .modal-buttons {
+                flex-direction: column;
+            }
         }
         
         @media (max-width: 480px) {
@@ -409,28 +568,79 @@
             .card-title {
                 font-size: 1.2rem;
             }
+            
+            .hero-stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Cookie Consent Banner -->
+    <!-- GDPR Cookie Consent Banner -->
     <div class="cookie-banner" id="cookieBanner">
         <div class="cookie-content">
+            <div class="cookie-header">🍪 Cookie Preferences</div>
             <div class="cookie-text">
-                We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies. 
+                We use cookies to enhance your browsing experience and analyze our traffic. 
+                You can choose which cookies to accept. Essential cookies are required for the site to function.
                 <a href="privacy-policy.html">Privacy Policy</a> | <a href="cookie-policy.html">Cookie Policy</a>
             </div>
             <div class="cookie-buttons">
-                <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
-                <button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
+                <button class="cookie-btn cookie-accept-all" onclick="acceptAllCookies()">Accept All</button>
+                <button class="cookie-btn cookie-reject" onclick="rejectNonEssential()">Reject Non-Essential</button>
+                <button class="cookie-btn cookie-customize" onclick="showCookieSettings()">Customize</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div class="cookie-overlay" id="cookieOverlay" onclick="closeCookieSettings()"></div>
+    <div class="cookie-modal" id="cookieModal">
+        <div class="modal-header">Cookie Preferences</div>
+        
+        <div class="cookie-category">
+            <div class="cookie-category-header">
+                <h3>Essential Cookies</h3>
+                <label class="cookie-toggle">
+                    <input type="checkbox" checked disabled>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p>Required for the website to function. Cannot be disabled.</p>
+        </div>
+        
+        <div class="cookie-category">
+            <div class="cookie-category-header">
+                <h3>Analytics Cookies</h3>
+                <label class="cookie-toggle">
+                    <input type="checkbox" id="analyticsCookies">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p>Help us understand how visitors interact with our website by collecting and reporting information anonymously.</p>
+        </div>
+        
+        <div class="cookie-category">
+            <div class="cookie-category-header">
+                <h3>Marketing Cookies</h3>
+                <label class="cookie-toggle">
+                    <input type="checkbox" id="marketingCookies">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p>Used to track visitors across websites to display relevant advertisements.</p>
+        </div>
+        
+        <div class="modal-buttons">
+            <button class="modal-btn modal-save" onclick="saveCustomPreferences()">Save Preferences</button>
+            <button class="modal-btn modal-cancel" onclick="closeCookieSettings()">Cancel</button>
         </div>
     </div>
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html"><img src="assets/icons/globaled.png" alt="Globaled" class="logo"/></a>
+            <a href="index.html"><img src="assets/icons/globaled.png" alt="GlobalEd and Tour Inc." class="logo"/></a>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -461,7 +671,7 @@
             
             <div class="hero-stats-grid">
                 <div class="hero-stat-box">
-                    <strong>11</strong>
+                    <strong>8</strong>
                     <span>Partner Universities</span>
                 </div>
                 <div class="hero-stat-box">
@@ -471,10 +681,6 @@
                 <div class="hero-stat-box">
                     <strong>4+</strong>
                     <span>Countries</span>
-                </div>
-                <div class="hero-stat-box">
-                    <strong>250+</strong>
-                    <span>Students Placed</span>
                 </div>
             </div>
         </div>
@@ -494,7 +700,7 @@
             <!-- Card 1 -->
             <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000007TG2A" target="_blank" rel="noopener" class="modern-card" data-country="germany">
                 <div class="card-image">
-                    <img src="assets/icons/BSBI.png" alt="BSBI Logo" class="university-logo">
+                    <img src="assets/icons/BSBI.png" alt="Berlin School of Business and Innovation Logo" class="university-logo">
                     <div class="country-flag">🇩🇪</div>
                 </div>
                 <div class="card-content">
@@ -510,9 +716,9 @@
             </a>
             
             <!-- Card 2 -->
-                        <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000006nWhe" target="_blank" rel="noopener" class="modern-card" data-country="canada">
+            <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000006nWhe" target="_blank" rel="noopener" class="modern-card" data-country="canada">
                 <div class="card-image">
-                    <img src="assets/icons/CCTB.png" alt="CCTB Logo" class="university-logo">
+                    <img src="assets/icons/CCTB.png" alt="Canadian College of Technology and Business Logo" class="university-logo">
                     <div class="country-flag">🇨🇦</div>
                 </div>
                 <div class="card-content">
@@ -530,7 +736,7 @@
             <!-- Card 3 -->
             <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000007iDoj" target="_blank" rel="noopener" class="modern-card" data-country="netherlands">
                 <div class="card-image">
-                    <img src="assets/icons/UASE.png" alt="UASE Logo" class="university-logo">
+                    <img src="assets/icons/UASE.png" alt="University of Applied Sciences Europe Logo" class="university-logo">
                     <div class="country-flag">🇳🇱</div>
                 </div>
                 <div class="card-content">
@@ -548,7 +754,7 @@
             <!-- Card 4 -->
             <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000006jtHt" target="_blank" rel="noopener" class="modern-card" data-country="canada">
                 <div class="card-image">
-                    <img src="assets/icons/TIC.png" alt="Trebas Logo" class="university-logo">
+                    <img src="assets/icons/TIC.png" alt="Trebas Institute Logo" class="university-logo">
                     <div class="country-flag">🇨🇦</div>
                 </div>
                 <div class="card-content">
@@ -566,7 +772,7 @@
             <!-- Card 5 -->
             <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000007ewJ8" target="_blank" rel="noopener" class="modern-card" data-country="canada">
                 <div class="card-image">
-                    <img src="assets/icons/TSOM.png" alt="TSOM Logo" class="university-logo">
+                    <img src="assets/icons/TSOM.png" alt="Toronto School of Management Logo" class="university-logo">
                     <div class="country-flag">🇨🇦</div>
                 </div>
                 <div class="card-content">
@@ -584,7 +790,7 @@
             <!-- Card 6 -->
             <a href="https://iapro.my.salesforce-sites.com/comarketing/CoMarketingCampaign?campaign=701Tf000007AG4I" target="_blank" rel="noopener" class="modern-card" data-country="canada">
                 <div class="card-image">
-                    <img src="assets/icons/UNF.svg" alt="UNF Logo" class="university-logo">
+                    <img src="assets/icons/UNF.svg" alt="University of Niagara Falls Canada Logo" class="university-logo">
                     <div class="country-flag">🇨🇦</div>
                 </div>
                 <div class="card-content">
@@ -600,9 +806,9 @@
             </a>
 
             <!-- Card 7 -->
-            <a href="https://cdn.apphero.io/pdf/a5eTf000000GNYXIA4.pdf" rel="noopener" class="modern-card" data-country="usa">
+            <a href="https://cdn.apphero.io/pdf/a5eTf000000GNYXIA4.pdf" target="_blank" rel="noopener" class="modern-card" data-country="usa">
                 <div class="card-image">
-                    <img src="assets/icons/HU.png" alt="Penn State Logo" class="university-logo">
+                    <img src="assets/icons/HU.png" alt="Herzing University Logo" class="university-logo">
                     <div class="country-flag">🇺🇸</div>
                 </div>
                 <div class="card-content">
@@ -618,9 +824,9 @@
             </a>
 
             <!-- Card 8 -->
-            <a href="https://cdn.apphero.io/pdf/a5eTf000000FHRxIAO.pdf" rel="noopener" class="modern-card" data-country="usa">
+            <a href="https://cdn.apphero.io/pdf/a5eTf000000FHRxIAO.pdf" target="_blank" rel="noopener" class="modern-card" data-country="usa">
                 <div class="card-image">
-                    <img src="assets/icons/WUL.svg" alt="Washington University Logo" class="university-logo">
+                    <img src="assets/icons/WUL.svg" alt="Washington University School of Law Logo" class="university-logo">
                     <div class="country-flag">🇺🇸</div>
                 </div>
                 <div class="card-content">
@@ -631,6 +837,24 @@
                     </div>
                     <p class="card-description">
                         Prestigious law school offering cutting-edge legal education with global perspectives.
+                    </p>
+                </div>
+            </a>
+                        
+            <!-- Card 6 -->
+            <a href="https://cdn.apphero.io/pdf/a5eTf000000FzZRIA0.pdf" target="_blank" rel="noopener" class="modern-card" data-country="usa">
+                <div class="card-image">
+                    <img src="assets/icons/PSU.jpg" alt="Penn State Logo" class="university-logo">
+                    <div class="country-flag">🇺🇸</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Penn State Dickinson Law</h3>
+                    <div class="card-location">
+                        <span class="city">Carlisle, PA</span>
+                        <span class="country">United States</span>
+                    </div>
+                    <p class="card-description">
+                        Historic law school combining traditional legal education with modern innovation.
                     </p>
                 </div>
             </a>
@@ -691,13 +915,14 @@
                                 <option value="University of Niagara Falls Canada">University of Niagara Falls Canada</option>
                                 <option value="Herzing University">Herzing University</option>
                                 <option value="Washington University School of Law">Washington University School of Law</option>
+                                <option value="Penn State Dickinson Law">Penn State Dickinson Law</option>
                             </select>
                         </div>
                         
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label style="display: flex; align-items: start; gap: 8px; font-size: 13px; font-weight: 400; text-transform: none;">
                                 <input type="checkbox" name="consent" required style="margin-top: 3px;">
-                                <span>I agree to receive communications from GlobalEd & Tour and have read the <a href="privacy-policy.html" style="color: var(--brand-secondary);">Privacy Policy</a></span>
+                                <span>I agree to receive communications from GlobalEd and Tour Inc. and have read the <a href="privacy-policy.html" style="color: var(--brand-secondary);">Privacy Policy</a></span>
                             </label>
                         </div>
                         
@@ -719,7 +944,7 @@
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-column brand-col animate-footer">
-                    <a href="index.html"><img src="assets/icons/globaled.png" alt="Globaled" class="logo"/></a>
+                    <a href="index.html"><img src="assets/icons/globaled.png" alt="GlobalEd and Tour Inc." class="logo"/></a>
                     <p class="footer-bio">
                         Your trusted bridge to international excellence. We simplify the journey to world-class education with expert guidance and a global network.
                     </p>
@@ -769,12 +994,13 @@
 
             <div class="footer-bottom">
                 <div class="footer-legal">
-                    <p>&copy; 2024 GlobalEd & Tour. All rights reserved.</p>
+                    <p>&copy; 2024 GlobalEd and Tour Inc. All rights reserved.</p>
                 </div>
                 <div class="footer-secondary-links">
                     <a href="privacy-policy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
                     <a href="cookie-policy.html">Cookie Policy</a>
+                    <a href="javascript:void(0)" onclick="showCookieSettings()">Cookie Settings</a>
                 </div>
             </div>
         </div>
@@ -784,77 +1010,132 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="js/script.js"></script>
     
-<script>
-    // Add hover animations and interactivity
-    document.addEventListener('DOMContentLoaded', function() {
-        // Add country filter functionality if needed
-        const filterButtons = document.querySelectorAll('.filter-box');
-        const universityCards = document.querySelectorAll('.modern-card');
+    <!-- GDPR Cookie Consent Script -->
+    <script>
+        // GDPR-Compliant Cookie Management
         
-        if (filterButtons.length > 0) {
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Update active button
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Filter universities
-                    const filter = this.dataset.filter;
-                    
-                    universityCards.forEach(card => {
-                        if (filter === 'all' || card.dataset.country === filter) {
-                            card.style.display = 'block';
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'translateY(0)';
-                            }, 10);
-                        } else {
-                            card.style.opacity = '0';
-                            card.style.transform = 'translateY(20px)';
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 300);
-                        }
-                    });
+        function showCookieBanner() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                document.getElementById('cookieBanner').classList.add('show');
+            } else {
+                // Load analytics if previously consented
+                loadConsentedServices();
+            }
+        }
+        
+        function acceptAllCookies() {
+            const consent = {
+                essential: true,
+                analytics: true,
+                marketing: true,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('cookieConsent', JSON.stringify(consent));
+            document.getElementById('cookieBanner').classList.remove('show');
+            loadConsentedServices();
+        }
+        
+        function rejectNonEssential() {
+            const consent = {
+                essential: true,
+                analytics: false,
+                marketing: false,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('cookieConsent', JSON.stringify(consent));
+            document.getElementById('cookieBanner').classList.remove('show');
+        }
+        
+        function showCookieSettings() {
+            document.getElementById('cookieModal').classList.add('show');
+            document.getElementById('cookieOverlay').classList.add('show');
+            
+            // Load current preferences
+            const consent = JSON.parse(localStorage.getItem('cookieConsent') || '{"analytics":false,"marketing":false}');
+            document.getElementById('analyticsCookies').checked = consent.analytics || false;
+            document.getElementById('marketingCookies').checked = consent.marketing || false;
+        }
+        
+        function closeCookieSettings() {
+            document.getElementById('cookieModal').classList.remove('show');
+            document.getElementById('cookieOverlay').classList.remove('show');
+        }
+        
+        function saveCustomPreferences() {
+            const consent = {
+                essential: true,
+                analytics: document.getElementById('analyticsCookies').checked,
+                marketing: document.getElementById('marketingCookies').checked,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('cookieConsent', JSON.stringify(consent));
+            closeCookieSettings();
+            document.getElementById('cookieBanner').classList.remove('show');
+            loadConsentedServices();
+        }
+        
+        function loadConsentedServices() {
+            const consent = JSON.parse(localStorage.getItem('cookieConsent') || '{}');
+            
+            // Load Google Analytics ONLY if analytics consent given
+            if (consent.analytics && typeof gtag === 'undefined') {
+                // Replace G-XXXXXXXXXX with your actual GA tracking ID
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+                document.head.appendChild(script);
+                
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', 'G-XXXXXXXXXX', {
+                    'anonymize_ip': true,
+                    'cookie_flags': 'SameSite=None;Secure'
                 });
-            });
+                
+                console.log('Google Analytics loaded with user consent');
+            }
+            
+            // Load marketing pixels ONLY if marketing consent given
+            if (consent.marketing) {
+                // Add Facebook Pixel, LinkedIn Insight, etc. here
+                console.log('Marketing services loaded with user consent');
+            }
         }
         
-        // Add scroll animations for cards
-        const cards = document.querySelectorAll('.modern-card');
+        // Show banner on page load
+        window.addEventListener('load', showCookieBanner);
         
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, index * 100);
-                }
+        // University Cards Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add scroll animations for cards
+            const cards = document.querySelectorAll('.modern-card');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    }
+                });
+            }, observerOptions);
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
             });
-        }, observerOptions);
-        
-        cards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(card);
         });
-        
-        // Load more functionality
-        const loadMoreBtn = document.getElementById('loadMore');
-        if (loadMoreBtn) {
-            loadMoreBtn.addEventListener('click', function() {
-                // You can add AJAX loading or show more cards here
-                alert('More universities would load here in production');
-            });
-        }
-    });
-</script>
+    </script>
 </body>
 </html>
